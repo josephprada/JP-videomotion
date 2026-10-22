@@ -1,0 +1,41 @@
+# Manifiesto del video. Lo llena la entrevista (flujos/nuevo-video.md) y lo lee `node nucleo/jp.mjs estado <video>`.
+# Las decisiones con su razón van en LEEME.md; aquí solo los valores.
+id: ""
+slug: ""
+titulo: ""
+creado: ""
+
+perfil: libre               # qué tipo de video (perfiles/): libre | historia-narrada | explicador | promo-lanzamiento | tutorial
+estilo: plano               # cómo se ve (estilos/)
+metodo: canvas              # cómo se produce (metodos/): canvas | hyperframes | generativo
+sistema_diseno: null        # marca (sistemas-diseno/<id>) o null
+
+idioma: es                  # idioma del contenido (narración, textos, subtítulos)
+formatos: [9x16]            # 9x16 | 1x1 | 16x9 (el primero es el principal)
+duracion: "60-75 s"
+plataformas: []             # tiktok | instagram-reels | youtube-shorts | youtube | linkedin | x | otra
+
+voz: tts                    # tts | humana | ninguna
+musica: sintetizada         # sintetizada | pista | ninguna
+subtitulos:
+  modo: quemados            # quemados | archivo | ambos | ninguno
+  mayusculas: false
+  max_palabras: 4
+  max_caracteres: 22
+  # fuente: "Arial"         # instalada en el sistema (libass)
+  # tamano: 76
+  # margen_inferior: 520    # px desde abajo; deja libre la interfaz de la plataforma
+
+datos_reales: false         # true = el video afirma hechos reales → investigación con fuentes
+marcas_terceros: permitidas # permitidas | prohibidas (uso nominativo; cada uso se registra en DECISIONES.md)
+
+reutiliza:
+  de: []                    # videos o universos de los que se toma algo (p. ej. [universos/mi-serie, videos/003-x])
+  diseno_completo: false    # true = no hay diseño nuevo (se salta la fase de diseño)
+
+modo: interactivo           # interactivo (para en cada compuerta) | automatico (solo donde hace falta una persona)
+
+estado:
+  fase: brief
+  completadas: []
+  historial: []

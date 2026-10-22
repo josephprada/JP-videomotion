@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+Thumbs.db
+
+# local de cada máquina (agente detectado, preferencias)
+.jp/
+
+# salidas regenerables
+out/
+tmp/
+*.wav
+*.mov
+*.mp4
+!videos/*/entregables/**/*.mp4
+
+# referencias externas de cada video (derechos de terceros; no se versionan)
+refs/

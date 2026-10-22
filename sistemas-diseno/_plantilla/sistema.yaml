@@ -1,0 +1,21 @@
+# Tokens del sistema de diseño. Copiar esta carpeta como sistemas-diseno/<id>/ y llenar.
+nombre: ""
+origen: manual            # claude-design | figma | manual-de-marca | manual
+fuente_original: ""       # enlace o ruta de donde salió (archivo de Figma, proyecto de Claude Design, PDF…)
+importado: ""             # fecha AAAA-MM-DD
+descripcion: ""
+colores:                  # hex; nombres semánticos
+  primario: ""
+  secundario: ""
+  acento: ""
+  fondo: ""
+  texto: ""
+  extra: {}
+tipografias:
+  display: { familia: "", peso: 800, fontsource: "" }   # fontsource: paquete @fontsource si existe
+  texto: { familia: "", peso: 500, fontsource: "" }
+logos:                    # rutas dentro de activos/
+  principal: ""
+  monocromo: ""
+reglas:                   # lo intocable, en frases cortas
+  - ""

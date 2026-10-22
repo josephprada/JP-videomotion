@@ -1,0 +1,4 @@
+nombre: Cómic en movimiento
+descripcion: Tinta de grosor variable, sombras de dos tonos con trama Ben-Day, personajes «en dos», onomatopeyas y viñetas
+metodos: [canvas]
+fuentes: ["Montserrat 800", "Montserrat 500", "Bangers"]

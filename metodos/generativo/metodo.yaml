@@ -1,0 +1,4 @@
+nombre: Generativo (IA de imagen y video)
+estado: experimental
+descripcion: Planos generados con modelos de imagen/video (p. ej. Higgsfield u otro proveedor) y montados con ffmpeg
+requiere: [ffmpeg, proveedor-ia]

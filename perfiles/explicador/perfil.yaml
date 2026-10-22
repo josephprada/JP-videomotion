@@ -1,0 +1,6 @@
+nombre: Explicador
+descripcion: Explica un concepto, un proceso o un dato con gráficos, diagramas y tipografía animada
+hereda: libre
+cambiar:
+  diseno:
+    nombre: Diseño (sistema gráfico, diagramas, tipografía)

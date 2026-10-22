@@ -1,0 +1,9 @@
+nombre: Promo / lanzamiento
+descripcion: Anuncio de producto, servicio, app o evento; corto, con marca y llamada a la acción
+hereda: libre
+cambiar:
+  investigacion:
+    nombre: Brief de producto y marca
+    solo_si: null
+    compuerta: true
+    produce: [investigacion.md]

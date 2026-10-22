@@ -1,0 +1,36 @@
+<!-- Spec por estados (patrón de las películas de "morph" de interfaz). Para piezas de producto o interfaz:
+     no se describe la vibra, se enumeran estados sobre la rejilla. -->
+<inputs>
+Pídeme: producto + URL, 8 a 12 estados que cuenten la historia, los datos reales de cada estado,
+colores y fuentes de marca + un acento, pista libre de derechos cerca de 120 BPM, formatos.
+</inputs>
+
+<direction>
+Un contenedor que nunca corta: cada estado es el mismo elemento cambiando tamaño, radio y relleno
+mientras su contenido cambia detrás de un desenfoque corto. Un cursor provoca cada cambio.
+Lienzo neutro cálido, un acento. Resortes con, como mucho, un sobrepaso mínimo.
+Prohibido: easing rebotón, brillos, degradados en la interfaz, explosiones de partículas, tiempo muerto.
+</direction>
+
+<structure>
+[BPM], [N] compases, algo pasa en cada beat.
+[estado 1] → [estado 2] → … → [estado 1] (loop)
+</structure>
+
+<build>
+1. window.seek(t). Sin transiciones CSS, sin timers, sin estado entre cuadros.
+2. Resortes de forma cerrada. Un valor con muchos objetivos = M.track().
+3. El texto dentro de un contenedor que cambia entra después del cambio y sale antes del siguiente (M.swapAlpha).
+4. Indicadores: borde de ataque y de salida con resortes distintos (M.indicator).
+5. Rejilla de beats medida o sintetizada. Empezar en un tiempo fuerte.
+6. render.mjs --sub 4 para desenfoque de movimiento.
+</build>
+
+<gotchas>
+Nunca will-change en algo que la cámara escala (texto borroso).
+El último cuadro debe ser igual al primero, incluida la posición y velocidad del cursor.
+</gotchas>
+
+<start>
+Pide las entradas y muéstrame la lista de estados sobre la rejilla antes de escribir código.
+</start>

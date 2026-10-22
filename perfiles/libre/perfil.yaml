@@ -1,0 +1,67 @@
+# Perfil raíz: las fases por defecto de cualquier video. Los demás perfiles heredan de este (hereda: libre)
+# y solo declaran lo que cambian: quitar, cambiar o agregar fases.
+#
+# Campos de una fase:
+#   id          nombre corto; es la sección de FASES.md y de metodos/<método>/METODO.md
+#   nombre      cómo se le muestra al usuario
+#   produce     archivos que deja (relativos a la carpeta del video)
+#   compuerta   true = parar y esperar aprobación en modo interactivo · siempre = parar también en modo automático
+#   saltar_si   se salta si CUALQUIERA de estos campos de video.yaml coincide (valor o lista de valores)
+#   solo_si     corre solo si TODOS estos campos coinciden
+nombre: Libre
+descripcion: Sirve para cualquier video; el tipo, el tono y la estructura se deciden en la entrevista
+fases:
+  - id: brief
+    nombre: Brief (entrevista)
+    produce: [video.yaml, brief.md]
+    compuerta: true
+  - id: investigacion
+    nombre: Investigación y fuentes
+    produce: [investigacion.md]
+    solo_si: { datos_reales: true }
+  - id: guion
+    nombre: Guion
+    produce: [guion.md]
+    compuerta: true
+  - id: voz
+    nombre: Voz
+    produce: [voz/narracion-completa.mp3]
+    compuerta: siempre
+    saltar_si: { voz: ninguna }
+  - id: tiempos
+    nombre: Tiempos de la voz y cortes
+    produce: [voz/palabras.srt, voz/silencios.txt, montaje/escenas.txt]
+    saltar_si: { voz: ninguna }
+  - id: diseno
+    nombre: Diseño (look, personajes, escenarios)
+    produce: [diseno/guia-estilo.md]
+    compuerta: true
+    saltar_si: { reutiliza.diseno_completo: true }
+  - id: storyboard
+    nombre: Storyboard
+    produce: [storyboard/storyboard.md, storyboard/cuadros.tsv]
+    compuerta: true
+  - id: animatic
+    nombre: Animatic (ritmo)
+    produce: [montaje/out/animatic.mp4]
+    compuerta: true
+  - id: produccion
+    nombre: Producción de escenas (con crítica 8+)
+    produce: [escenas/, critica.md]
+  - id: sonido
+    nombre: Música, efectos y mezcla
+    produce: [montaje/audio/mezcla.wav]
+  - id: render
+    nombre: Render final
+    produce: [montaje/out/final.mp4]
+  - id: subtitulos
+    nombre: Subtítulos automáticos
+    produce: [entregables/final/subtitulos.srt]
+    saltar_si: { subtitulos.modo: ninguno, voz: ninguna }
+  - id: entrega
+    nombre: Entrega
+    produce: [entregables/final/]
+    compuerta: siempre
+  - id: ajustes
+    nombre: Ronda de ajustes
+    compuerta: siempre

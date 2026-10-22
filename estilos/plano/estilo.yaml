@@ -1,0 +1,4 @@
+nombre: Plano (sin contorno)
+descripcion: Formas planas separadas por valor, sombra de celda y luz de borde; cámara continua. Oficio tipo Kurzgesagt
+metodos: [canvas]
+fuentes: ["Montserrat 800", "Montserrat 500"]

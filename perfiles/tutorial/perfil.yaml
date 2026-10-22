@@ -1,0 +1,10 @@
+nombre: Tutorial
+descripcion: Enseña a hacer algo paso a paso; puede combinar capturas de pantalla o cámara con gráficos
+hereda: libre
+agregar:
+  - id: captura
+    nombre: Captura (pantalla o cámara)
+    produce: [captura/]
+    compuerta: true
+    saltar_si: { captura: ninguna }
+    despues: guion

@@ -1,0 +1,4 @@
+nombre: Canvas en código (ruta A)
+estado: estable
+descripcion: Cada escena es un index.html con un canvas que se pinta como función pura del tiempo; render con Playwright + ffmpeg
+requiere: [node, ffmpeg, chrome, bash]

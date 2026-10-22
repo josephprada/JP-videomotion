@@ -1,0 +1,10 @@
+Referencia: <video>/refs/ref.mp4 (o refs/*.png, o una carpeta de imágenes propias). refs/ no se versiona.
+
+1. bash nucleo/tools/ref-frames.sh <video>/refs/ref.mp4 → un cuadro cada 0,5 s y hojas de contacto. Estúdialos.
+2. Escribe <video>/diseno/guia-estilo.md: paleta (hex), tipografía (familia, peso, espaciado),
+   duración de planos, tipos de transición, movimientos de cámara, textura/grano,
+   cómo entra y sale el texto. Qué tomamos y qué NO.
+3. Escribe <video>/storyboard/storyboard.md para un video de [DURACIÓN] s sobre [TEMA] en ESE estilo,
+   sobre la rejilla de beats. Toma la gramática de la referencia, nunca su contenido ni sus personajes.
+4. Muestra ambos archivos. Espera el OK antes de escribir código.
+   Si se rechaza: se reescribe el storyboard, no el código.

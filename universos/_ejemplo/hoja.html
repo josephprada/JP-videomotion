@@ -1,0 +1,39 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Hoja de modelo · persona de ejemplo</title>
+<!-- Hoja de modelo renderizable: node nucleo/render.mjs --film universos/_ejemplo --page hoja --stills 0 -->
+<style>html,body{margin:0;background:#111}canvas{display:block;max-height:100vh;margin:auto}</style>
+<canvas id="c"></canvas>
+<script src="../../nucleo/lib/motion.js"></script>
+<script src="../../nucleo/kit/fuentes.js"></script>
+<script src="../../nucleo/kit/dibujo.js"></script>
+<script src="../../nucleo/kit/rig.js"></script>
+<script src="../../nucleo/kit/camara.js"></script>
+<script src="../../nucleo/kit/armazon.js"></script>
+<script src="js/persona.js"></script>
+<script>
+  const caras = ["800 40px Montserrat"];
+  const listo = FUENTES.cargar(new URL("../../estilos/plano/estilo.js", location.href).href, ["montserrat/800.css"], caras);
+  const P = ARMAZON.crear({ dur: 1, fondo: "#F2EBDD", fuentes: caras, cargar: [listo] });
+  const g = P.g;
+  const POSES = [
+    ["neutro", {}],
+    ["camina", { ...RIG.caminar(PERSONA.SPEC, 0.25), cabeza: { expr: "feliz", mirada: [0.6, 0] } }],
+    ["saluda", { manoD: [120, 120], codoAbajoD: true, cabeza: { expr: "habla", mirada: [0.4, 0] } }],
+    ["en jarras", { manoI: [-96, 530], manoD: [96, 530], tipoI: "puno", tipoD: "puno", cabeza: { expr: "seria", rot: -4, mirada: [-0.4, 0] } }],
+  ];
+  P.planos([[0, 1, () => P.dis(() => {
+    g.fillStyle = "#2A2230"; g.font = "800 46px Montserrat"; g.textAlign = "center";
+    g.fillText("PERSONA DE EJEMPLO · HOJA DE MODELO", 540, 90);
+    POSES.forEach(([nombre, pose], i) => {
+      const x = 150 + i * 260;
+      PERSONA.draw(g, { ...pose, x, y: 980, alto: 720 });
+      g.fillStyle = "#2A2230"; g.font = "800 30px Montserrat"; g.fillText(nombre.toUpperCase(), x, 1030);
+    });
+    Object.keys(RIG.EXPR_P).forEach((expr, i) => {
+      const x = 110 + (i % 4) * 285, y = 1260 + Math.floor(i / 4) * 360;
+      g.save(); g.translate(x, y); g.scale(1.05, 1.05); PERSONA.retrato(g, { expr, mirada: [0, 0] }); g.restore();
+      g.fillStyle = "#2A2230"; g.font = "800 26px Montserrat"; g.fillText(expr.toUpperCase(), x, y + 170);
+    });
+  })]]);
+</script>

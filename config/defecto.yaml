@@ -1,0 +1,35 @@
+# Valores por defecto de JP-videomotion. NO se edita: el bootstrap crea jp.config.yaml en la raíz con lo que cambie
+# cada persona (lo que no esté allí se toma de aquí). Con «todo por defecto», jp.config.yaml queda casi vacío.
+version: 1
+
+idioma_conversacion: es     # en qué idioma habla el agente con la persona
+idioma_contenido: es        # idioma por defecto de los videos (cada video puede cambiarlo)
+
+# Para qué se usa el repo: perfiles que la entrevista sugiere primero. [] = sin preferencia (se pregunta).
+usos: []
+
+marcas_terceros: permitidas # permitidas | prohibidas · uso nominativo; cada uso se registra en DECISIONES.md
+
+voz:
+  proveedor: ""             # p. ej. elevenlabs, otro TTS, grabación propia; vacío = se pregunta en cada video
+
+video:                      # lo que propone la entrevista si la persona no dice otra cosa
+  perfil: libre
+  estilo: plano
+  metodo: canvas
+  formatos: [9x16]
+  duracion: "60-75 s"
+  plataformas: [tiktok, instagram-reels, youtube-shorts]
+  voz: tts
+  musica: sintetizada
+  subtitulos: quemados      # en redes la mayoría ve sin sonido: quemados por defecto
+  modo: interactivo
+  sistema_diseno: null
+  subtitulos_estilo:
+    mayusculas: false
+    max_palabras: 4
+    max_caracteres: 22
+
+entrevista:
+  preguntar_todo: true      # true = en cada video se pregunta todo (con estos valores como sugerencia)
+                            # false = solo se pregunta lo que no tenga valor aquí o en jp.config.yaml

@@ -1,0 +1,18 @@
+Abre contacto.png, tira.png y telefono.png (los deja nucleo/tools/critica.sh junto al video) y míralos de verdad.
+Sé un director de animación exigente, no un autor orgulloso.
+
+Puntúa de 1 a 10:
+  gancho en los primeros 2 s · legibilidad a 360 px de ancho · calidad de movimiento
+  (resortes, cero cuadros muertos) · variedad (algo nuevo cada 2-4 s) · composición ·
+  fidelidad al estilo (diseno/guia-estilo.md del video) · personaje fiel a su hoja de modelo ·
+  sincronía con el sonido · zona segura (nada clave bajo la interfaz de la plataforma ni bajo los subtítulos).
+
+Lista los 3 problemas más grandes, con su tiempo exacto. Busca en particular:
+  texto que se pisa durante un cambio · algo que se desliza en vez de asentarse ·
+  etiquetas en las esquinas o marcos sin motivo · planos de título centrado sobre degradado ·
+  texto ampliado y borroso · un beat muerto donde no pasa nada · un salto en la costura del loop ·
+  el personaje que cambia de proporciones entre planos · tramado que "hierve" en zonas quietas.
+
+Anota puntuaciones y problemas en critica.md del video (ronda N, fecha).
+Arréglalos, vuelve a renderizar solo los segundos afectados (render.mjs --from --to),
+muestra la nueva hoja de contacto y las nuevas puntuaciones. Repite hasta que todo sea 8+.

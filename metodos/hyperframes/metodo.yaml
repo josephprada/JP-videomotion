@@ -1,0 +1,4 @@
+nombre: HyperFrames (composiciones HTML)
+estado: experimental
+descripcion: Composiciones HTML con línea de tiempo y CLI propios; fuerte en tipografía cinética, promos y explicadores
+requiere: [node, ffmpeg, hyperframes-cli]

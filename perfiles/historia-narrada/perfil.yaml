@@ -1,0 +1,8 @@
+nombre: Historia narrada
+descripcion: Storytelling con narrador (casos, biografías, negocios, historia); datos verificados obligatorios
+hereda: libre
+cambiar:
+  investigacion:
+    nombre: Investigación verificada
+    solo_si: null
+    compuerta: true
