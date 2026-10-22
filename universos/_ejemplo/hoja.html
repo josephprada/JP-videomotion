@@ -23,8 +23,8 @@
     ["en jarras", { manoI: [-96, 530], manoD: [96, 530], tipoI: "puno", tipoD: "puno", cabeza: { expr: "seria", rot: -4, mirada: [-0.4, 0] } }],
   ];
   P.planos([[0, 1, () => P.dis(() => {
-    g.fillStyle = "#2A2230"; g.font = "800 46px Montserrat"; g.textAlign = "center";
-    g.fillText("PERSONA DE EJEMPLO · HOJA DE MODELO", 540, 90);
+    g.fillStyle = "#2A2230"; g.font = "800 40px Montserrat"; g.textAlign = "center";
+    g.fillText("PERSONA DE EJEMPLO · HOJA DE MODELO", 540, 96);
     POSES.forEach(([nombre, pose], i) => {
       const x = 150 + i * 260;
       PERSONA.draw(g, { ...pose, x, y: 980, alto: 720 });

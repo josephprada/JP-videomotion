@@ -13,7 +13,8 @@ Abre tu agente (Claude Code, u otro que lea `AGENTS.md`) en la carpeta donde qui
 > Clona `https://github.com/josephprada/JP-videomotion` aquí y configúralo.
 
 El agente lo descarga, revisa tu equipo y te hace una primera pregunta: **¿todo por defecto o configurado para tus casos de uso?**
-Después, cada vez que quieras un video, dile **«nuevo video»**.
+Al terminar, **abre tu agente dentro de la carpeta del proyecto** (así carga sus instrucciones y atajos) y, cada vez que
+quieras un video, dile **«nuevo video»**.
 
 ## Qué necesita tu equipo
 Node.js 20+, ffmpeg, Google Chrome (o Chromium/Edge), git y bash (en Windows viene con Git for Windows).
