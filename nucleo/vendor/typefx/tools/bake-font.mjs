@@ -32,7 +32,9 @@ const font = fontkit.openSync(resolve(input));
 const W = range(opt.wght);
 const D = range(opt.wdth);
 const instances = [];
-for (const w of W) for (const d of D) instances.push(font.getVariation({ wght: w, wdth: d }));
+// JP-videomotion: una fuente estática (sin ejes, p. ej. Anton) repite la misma instancia en toda la rejilla.
+const variable = Object.keys(font.variationAxes || {}).length > 0;
+for (const w of W) for (const d of D) instances.push(variable ? font.getVariation({ wght: w, wdth: d }) : font);
 
 const glyphs = {};
 for (const ch of [...new Set([...opt.chars, ' '])]) {

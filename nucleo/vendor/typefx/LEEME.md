@@ -15,8 +15,9 @@ Fuentes: Anybody y JetBrains Mono, licencia SIL Open Font License (`fuentes/OFL-
 ## Cambios frente al original
 - `fonts/anybody.js` y `fonts/jetbrains-mono.js` se regeneraron con `tools/bake-font.mjs` para incluir **minúsculas, tildes, ñ,
   «comillas» y signos** (el original solo traía mayúsculas). Mismos ejes y la misma rejilla de instancias.
+- `tools/bake-font.mjs` acepta **fuentes estáticas** (sin ejes): repite la misma instancia en la rejilla. El original solo aceptaba variables.
 - `package.json` con `"type": "module"` para que Node cargue los módulos sin avisos.
-- Nada más: el código de la biblioteca está intacto. Para actualizarlo, copiar de nuevo `typefx/` del original y volver a generar las fuentes.
+- Nada más: el código de la biblioteca (`typefx/` sin `tools/`) está intacto. Para actualizarlo, copiar de nuevo `typefx/` del original y volver a generar las fuentes.
 
 ## Cómo se usa en JP-videomotion
 No se importa directamente desde una escena: se usa a través de `nucleo/kit/tipo.mjs`, que pone el reloj de la voz

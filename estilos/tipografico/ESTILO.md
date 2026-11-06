@@ -53,5 +53,8 @@ Criterios completos de dirección de arte: `nucleo/vendor/typefx/docs/art-direct
 - **Zoom extremo**: `tol` bajo (0,04–0,1) en el spec para que las curvas no se vean facetadas.
 - **Caracteres**: las fuentes incluidas traen mayúsculas, minúsculas, tildes, ñ, «comillas», cifras y signos comunes. Otro carácter
   (emoji, alfabetos no latinos) no se dibuja: regenera la fuente con `node nucleo/vendor/typefx/tools/bake-font.mjs`.
-- **Otra tipografía** (la de la marca): `node nucleo/vendor/typefx/tools/bake-font.mjs <fuente.ttf> <video>/js/fuente.js --chars "…"` y
-  `escenaTipo({ fuente: datos })`. Sin eje de anchura: `--wdth 100,100,2`.
+- **Otra tipografía** (la de la marca): `node nucleo/vendor/typefx/tools/bake-font.mjs <fuente.ttf|.otf|.woff|.woff2> <video>/js/fuente.js --chars "…"`,
+  luego `import fuente from "../../js/fuente.js"` y `escenaTipo({ fuente })`. Acepta los `.woff2` de `nucleo/node_modules/@fontsource/<fuente>/files/`.
+  - Variable sin eje de anchura: `--wdth 100,100,2`.
+  - **Estática** (sin ejes, p. ej. Anton): `--wght 400,400,2 --wdth 100,100,2`. Ojo: en una estática `variable-weight` y los cambios de
+    `wght`/`wdth` no hacen nada (no hay ejes); los otros 10 efectos funcionan. Para jugar con el peso, combina con Anybody.
