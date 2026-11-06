@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>typefx · galería</title>
+<style>
+  @font-face { font-family: "TypefxMono"; src: url("../../../assets/fonts/JetBrainsMono[wght].ttf"); font-weight: 100 900; }
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+// Galería de comprobación: la demo de cada efecto en una rejilla de 4 × 3. ?t=segundos&edition=mono|color
+import fontData from '../fonts/anybody.js';
+import { createEnv, createRenderer, createLayer, listEffects, drawMono } from '../index.js';
+
+const q = new URLSearchParams(location.search);
+const env = createEnv({ fontData, palette: q.get('edition') || 'mono' });
+const r = createRenderer(document.getElementById('c'), { subframes: 1 });
+const demos = listEffects().sort((a, b) => a.index - b.index);
+const layers = demos.map((d) => d.id === 'layer-compose' ? null : createLayer({
+  source: { text: d.demo.text, cap: d.demo.cap, x: 960, y: 540 + d.demo.cap / 2 - (d.demo.text.split('\n').length - 1) * d.demo.cap * 0.55, align: 'center', wght: 800, lineHeight: d.demo.lineHeight ?? 1.1 },
+  stack: [[d.id, d.demo.params]],
+}));
+
+window.seek = (t) => r.frame(t, (ctx, tt) => {
+  ctx.fillStyle = env.palette.c('paper');
+  ctx.fillRect(0, 0, 1920, 1080);
+  demos.forEach((d, i) => {
+    const cx = (i % 4) * 480, cy = Math.floor(i / 4) * 360;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(cx + 4, cy + 4, 472, 352); ctx.clip();
+    ctx.translate(cx, cy); ctx.scale(0.25, 0.25); ctx.translate(0, 180);
+    if (layers[i]) layers[i].draw(ctx, tt % 2, env);
+    ctx.restore();
+    drawMono(ctx, env.palette, `${String(d.index).padStart(2, '0')} ${d.id}`, cx + 14, cy + 340, { size: 16 });
+  });
+});
+window.DURATION = 2;
+document.fonts.load('16px TypefxMono').then(() => window.seek(Number(q.get('t') || 0.6)));
+</script>
+</body>
+</html>

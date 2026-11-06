@@ -8,8 +8,9 @@
 //   node nucleo/jp.mjs completar <video> <fase> [--nota "..."]
 //   node nucleo/jp.mjs reabrir <video> <fase> [--nota "..."]
 //   node nucleo/jp.mjs subtitulos <video> [--quemar] [--entrada montaje/out/final.mp4]
+//   node nucleo/jp.mjs servir [--puerto 5180]               vista previa en vivo (escenas con módulos ES, p. ej. estilo tipográfico)
 // <video> es la carpeta (videos/007-slug) o solo el número (007).
-import { existsSync, readFileSync, writeFileSync, readdirSync, mkdirSync, cpSync, statSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, readdirSync, mkdirSync, cpSync, statSync, rmSync } from "node:fs";
 import { join, resolve, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
@@ -18,6 +19,7 @@ import { resolverPerfil, estado, completar, reabrir } from "./lib/fases.mjs";
 import { detectarAgente } from "./lib/agente.mjs";
 import { leerSrt, agrupar, aSrt, aAss } from "./lib/subtitulos.mjs";
 import { buscarChrome } from "./navegador.mjs";
+import { servir as servirRepo } from "./lib/servidor.mjs";
 
 const RAIZ = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const [cmd, ...resto] = process.argv.slice(2);
@@ -131,6 +133,9 @@ function nuevo() {
   cpSync(join(RAIZ, "videos/_plantilla"), dest, { recursive: true });
   const guionPerfil = [perfil, leerPerfil(perfil).hereda, "libre"].filter(Boolean).map((p) => join(RAIZ, "perfiles", p, "guion.md")).find(existsSync);
   if (guionPerfil) cpSync(guionPerfil, join(dest, "guion.md"));
+  // un estilo puede traer su propia escena de partida (p. ej. tipográfico, en módulos ES con typefx)
+  const plantillaEstilo = join(RAIZ, "estilos", estilo, "plantilla/escena1");
+  if (existsSync(plantillaEstilo)) { rmSync(join(dest, "escenas/escena1"), { recursive: true }); cpSync(plantillaEstilo, join(dest, "escenas/escena1"), { recursive: true }); }
   const idx = join(dest, "escenas/escena1/index.html");
   writeFileSync(idx, readFileSync(idx, "utf8").replaceAll("{{ESTILO}}", estilo).replaceAll("{{TITULO}}", `${num} · ${slug}`));
 
@@ -225,6 +230,12 @@ function subtitulos() {
   console.log("quemados →", relative(RAIZ, out).replaceAll("\\", "/"));
 }
 
-const CMDS = { doctor, agente, catalogo, nuevo, estado: mostrarEstado, completar: () => cambiarEstado(completar, "completar"), reabrir: () => cambiarEstado(reabrir, "reabrir"), subtitulos };
+async function servir() {
+  const s = await servirRepo(RAIZ, { puerto: Number(opt("puerto", 5180)) });
+  console.log(`vista previa: ${s.url}/<ruta de la escena>/index.html  (p. ej. ${s.url}/videos/001-x/escenas/escena1/)`);
+  console.log("Ctrl+C para cerrar.");
+}
+
+const CMDS = { servir, doctor, agente, catalogo, nuevo, estado: mostrarEstado, completar: () => cambiarEstado(completar, "completar"), reabrir: () => cambiarEstado(reabrir, "reabrir"), subtitulos };
 if (!CMDS[cmd]) { console.log(readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1).filter((l, i, ls) => ls.slice(0, i + 1).every((x) => x.startsWith("//"))).map((l) => l.replace(/^\/\/ ?/, "")).join("\n")); process.exit(cmd ? 1 : 0); }
 CMDS[cmd]();

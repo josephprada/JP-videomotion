@@ -32,7 +32,7 @@ Nunca instalar software del sistema sin preguntar.
 2. **Idioma**: «¿En qué idioma serán tus videos?» → `idioma_contenido` (y `idioma_conversacion` si quiere hablar en otro).
 3. **Dónde publica**: TikTok/Reels/Shorts (vertical 9:16) · YouTube largo (16:9) · LinkedIn/X (1:1 o 16:9) · varios.
    → `video.plataformas` y `video.formatos`.
-4. **Voz**: voz sintética (¿qué proveedor? p. ej. ElevenLabs) · su propia voz · sin voz · depende del video. → `video.voz`, `voz.proveedor`.
+4. **Voz**: voz sintética (¿qué proveedor? p. ej. ElevenLabs o Fish Audio) · su propia voz · sin voz · depende del video. → `video.voz`, `voz.proveedor`.
 5. **Subtítulos**: «En redes la mayoría ve sin sonido. ¿Subtítulos quemados por defecto?» quemados (recomendado para redes) ·
    solo archivo .srt · ambos · ninguno. → `video.subtitulos` (y `mayusculas` si quiere el estilo de redes en mayúsculas).
 6. **Marca**: «¿Tienes una marca o sistema de diseño (colores, tipografías, logo)?» no · sí, en Claude Design · sí, en Figma ·

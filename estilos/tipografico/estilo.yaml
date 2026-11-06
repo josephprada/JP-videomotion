@@ -1,0 +1,6 @@
+nombre: Tipográfico (voz y tipografía)
+descripcion: 100 % voz y tipografía cinética con typefx (12 efectos de glifo); fondo liso, una fuente, un acento
+metodos: [canvas]
+motor: typefx              # escenas en módulos ES (nucleo/kit/tipo.mjs); el render levanta un servidor local
+plantilla: plantilla       # estilos/tipografico/plantilla/escena1 reemplaza la escena de la plantilla del video
+fuentes: ["Anybody (variable: wght 100–900, wdth 50–150)", "JetBrains Mono (línea de parámetros)"]

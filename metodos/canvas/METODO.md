@@ -36,7 +36,9 @@ bash nucleo/tools/critica.sh <v>/montaje/out/animatic.mp4
 - Antes de animar: `nucleo/TRAMPAS.md` y las trampas del estilo (`estilos/<estilo>/ESTILO.md`).
 - Por escena: `node nucleo/render.mjs --film <v>/escenas/escenaN --stills 0.5,1.5,2.5` → mirar → arreglar.
 - Bucle de crítica (`nucleo/prompts/critica.txt`) hasta 8+, registrado en `<v>/critica.md`.
-- Vista previa en vivo: abrir `<v>/escenas/escenaN/index.html` en Chrome.
+- Vista previa en vivo: `node nucleo/jp.mjs servir` y abrir `http://127.0.0.1:5180/<v>/escenas/escenaN/` (o doble clic en escenas clásicas).
+- Estilo tipográfico: las escenas son módulos ES sobre `nucleo/kit/tipo.mjs` (typefx). Cada capa empieza en una palabra de la voz
+  (`E.palabra("…")`); ver `estilos/tipografico/ESTILO.md` y los parámetros en `nucleo/vendor/typefx/docs/effects.md`.
 
 ## sonido
 `<v>/montaje/audio/sintesis.cjs` (música por tramos + efectos sobre las palabras, en segundos de la voz) y:

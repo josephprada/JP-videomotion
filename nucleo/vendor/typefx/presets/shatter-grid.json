@@ -1,0 +1,9 @@
+{
+  "id": "shatter-grid",
+  "name": "Shatter Grid",
+  "description": "Mosaico de palabra repetida que se rompe en polígonos y vuelve a encajar.",
+  "source": { "text": "SHATTER\nSHATTER\nSHATTER", "cap": 210, "x": 960, "y": 330, "align": "center", "wght": 900, "wdth": 80, "lineHeight": 0.78 },
+  "stack": [
+    ["split-fragment", { "mode": "shards", "count": 16, "pattern": "radial", "offset": 160, "rotation": 14, "spread": { "keys": [[0, 0], [1, 1, "outExpo"], [3, 1], [4, 0, "inOutExpo"]] } }]
+  ]
+}

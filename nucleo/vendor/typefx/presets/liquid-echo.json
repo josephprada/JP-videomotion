@@ -1,0 +1,10 @@
+{
+  "id": "liquid-echo",
+  "name": "Liquid Echo",
+  "description": "Onda sinusoidal sobre los contornos y siete copias retardadas que dibujan la estela.",
+  "source": { "text": "LIQUID", "cap": 220, "x": 960, "y": 420, "align": "center", "wght": 900, "wdth": 110 },
+  "stack": [
+    ["warp-distort", { "field": "sine", "amplitude": 60, "frequency": 2.4, "direction": 0, "speed": 0.5 }],
+    ["duplicate-echo", { "copies": 6, "delay": 0.1, "offset": [0, 90], "mode": "outline", "stroke": 2.5 }]
+  ]
+}

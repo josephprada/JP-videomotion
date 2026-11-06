@@ -11,7 +11,7 @@ usos: []
 marcas_terceros: permitidas # permitidas | prohibidas · uso nominativo; cada uso se registra en DECISIONES.md
 
 voz:
-  proveedor: ""             # p. ej. elevenlabs, otro TTS, grabación propia; vacío = se pregunta en cada video
+  proveedor: ""             # p. ej. elevenlabs, fish-audio, otro TTS, grabación propia; vacío = se pregunta en cada video
 
 video:                      # lo que propone la entrevista si la persona no dice otra cosa
   perfil: libre

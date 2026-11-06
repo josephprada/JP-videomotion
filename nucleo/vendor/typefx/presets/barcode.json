@@ -1,0 +1,10 @@
+{
+  "id": "barcode",
+  "name": "Barcode",
+  "description": "Las letras se estiran hasta volverse barras verticales mientras el tracking se abre.",
+  "source": { "text": "BARCODE", "cap": 200, "x": 960, "y": 760, "align": "center", "wght": 800, "wdth": 50 },
+  "stack": [
+    ["stretch-squash", { "amount": 3.4, "volume": 0.8, "elastic": 0.6, "stagger": 0.08, "duration": 2, "anchor": "baseline" }],
+    ["tracking-spacing", { "mode": "tween", "from": -0.05, "to": 0.35, "duration": 2, "easing": "inOutExpo" }]
+  ]
+}

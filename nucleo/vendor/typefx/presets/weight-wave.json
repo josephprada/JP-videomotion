@@ -1,0 +1,10 @@
+{
+  "id": "weight-wave",
+  "name": "Weight Wave",
+  "description": "Una onda de peso recorre el texto mientras avanza por una curva.",
+  "source": { "text": "WEIGHT WAVE WEIGHT WAVE WEIGHT WAVE", "cap": 120, "x": 0, "y": 540, "wght": 500 },
+  "stack": [
+    ["variable-weight", { "mode": "wave", "waveLength": 7, "speed": 0.5 }],
+    ["path-flow", { "path": "s-curve", "flow": 200 }]
+  ]
+}

@@ -42,7 +42,10 @@ Si la persona tiene sus sistemas de diseño en **Claude Design** y quiere usarlo
    respetando el estilo elegido y el sistema de la marca.
 
 ## Otras capacidades que este repo aprovecha si están disponibles
-- **HyperFrames** (skills `hyperframes*`): método `hyperframes` (`metodos/hyperframes/METODO.md`).
+- **HyperFrames** (skills `hyperframes*`): método `hyperframes` (`metodos/hyperframes/METODO.md`). Si la persona elige ese método y no tiene
+  las skills, ofrecer instalarlas (`npx skills add heygen-com/hyperframes`) y avisar si pide confirmar permisos o reiniciar.
+- **Tipografía cinética**: no requiere skills externas; typefx ya viene en `nucleo/vendor/typefx` (estilo `tipografico`). Su skill original
+  (`github.com/lorena-bordonaba-pau/typefx`) solo hace falta para su propio formato de proyecto, no para este repo.
 - **Higgsfield** u otro conector de generación: método `generativo`, voces y música generadas. Siempre confirmar el costo en créditos antes de generar.
 - **Figma** (conector/MCP): importar sistemas de diseño desde archivos de Figma.
 - **Memoria persistente**: si la tienes, guarda al cerrar cada fase con compuerta un resumen corto (video, fase, decisión) para retomar entre sesiones; la fuente de verdad sigue siendo `video.yaml`.

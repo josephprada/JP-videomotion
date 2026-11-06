@@ -31,5 +31,9 @@ El agente lo revisa con `node nucleo/jp.mjs doctor` y te dice cómo instalar lo 
 
 Detalle técnico en `AGENTS.md` (todos los agentes) y `CLAUDE.md` (soporte extra para Claude).
 
+## Créditos
+- Tipografía cinética: [typefx](https://github.com/lorena-bordonaba-pau/typefx) de Lorena Bordonaba (MIT), incluido en `nucleo/vendor/typefx`.
+- Fuentes Anybody y JetBrains Mono (SIL Open Font License).
+
 ## Licencia
 MIT (ver `LICENSE`).

@@ -23,7 +23,9 @@ Aplican al método `canvas`; los otros métodos declaran su propio contrato en `
 ## Calidad antes de mostrar
 1. Renderizar un cuadro por beat como hoja de contacto (`tools/critica.sh`) y **mirarla**.
 2. Puntuar con `prompts/critica.txt`, arreglar los 3 peores problemas, repetir hasta 8+. Registrar cada ronda en `critica.md` del video.
-3. Solo entonces mostrar al usuario. Nunca decir «quedó» sin haber visto un cuadro renderizado después del cambio.
+3. Si el video tiene voz, revisar también **la animación con el audio** (animatic con la voz): ritmo y sincronía. Un golpe que no cae en su palabra es un error.
+4. Si faltan los tiempos por palabra, se obtiene la alineación (`tools/tiempos.sh`) **antes** de animar. Nunca se inventan.
+5. Solo entonces mostrar al usuario. Nunca decir «quedó» sin haber visto un cuadro renderizado después del cambio.
 
 ## Look por defecto (un estilo puede relajarlo, no ignorarlo)
 - Prohibido: título centrado sobre degradado, todo entrando con fundido, etiquetas en las esquinas y marcos sin motivo, brillo sobre la interfaz, explosiones de partículas genéricas.
@@ -35,4 +37,4 @@ Aplican al método `canvas`; los otros métodos declaran su propio contrato en `
 - Loudness final −14 LUFS (`tools/mezcla.sh`). La mezcla se mide, pero se aprueba de oído.
 
 ## Render
-- `node nucleo/render.mjs --film <carpeta de la escena>` (ruta desde la raíz del repo). H.264 yuv420p, CRF 16. Final con `--sub 4` (desenfoque de movimiento).
+- `node nucleo/render.mjs --film <carpeta de la escena>` (ruta desde la raíz del repo). Sirve la escena por un servidor local (127.0.0.1), así funcionan igual las escenas clásicas y las de módulos ES. H.264 yuv420p, CRF 16. Final con `--sub 4` (desenfoque de movimiento).

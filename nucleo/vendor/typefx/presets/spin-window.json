@@ -1,0 +1,10 @@
+{
+  "id": "spin-window",
+  "name": "Spin Window",
+  "description": "Letras que giran alineadas al pulso, vistas a través de ventanas que se desplazan.",
+  "source": { "text": "ROTATE", "cap": 300, "x": 960, "y": 690, "align": "center", "wght": 900, "wdth": 90 },
+  "stack": [
+    ["rotation-spin", { "mode": "sync", "turns": 1, "stagger": 0.04, "easing": "inOutQuart" }],
+    ["mask-reveal", { "shape": "windows", "count": 3, "size": 760, "surface": "surfaceA", "inside": "onSurfaceA", "outside": "ink", "duration": 4, "easing": "linear" }]
+  ]
+}

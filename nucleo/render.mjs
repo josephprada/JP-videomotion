@@ -12,9 +12,10 @@
 import { chromium } from "playwright-core";
 import { spawn } from "node:child_process";
 import { mkdirSync, writeFileSync, existsSync } from "node:fs";
-import { join, resolve, dirname } from "node:path";
-import { pathToFileURL, fileURLToPath } from "node:url";
+import { join, resolve, dirname, relative, sep } from "node:path";
+import { fileURLToPath } from "node:url";
 import { lanzar } from "./navegador.mjs";
+import { servir } from "./lib/servidor.mjs";
 
 const argv = process.argv.slice(2);
 const arg = (k, d) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : d; };
@@ -33,11 +34,24 @@ mkdirSync(OUT, { recursive: true });
 
 const browser = await lanzar(chromium, { args: ["--disable-gpu-vsync", "--font-render-hinting=none"] });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
-page.on("console", (m) => { if (m.type() === "error") console.error("[página]", m.text()); });
+// errores de la página; los 404 se informan con su URL (el genérico «Failed to load resource» no dice cuál).
+// voz/palabras.srt es opcional: una escena sin voz lo pide y usa sus tiempos de respaldo.
+page.on("console", (m) => { if (m.type() === "error" && !m.text().startsWith("Failed to load resource")) console.error("[página]", m.text()); });
+page.on("response", (r) => { if (r.status() >= 400 && !r.url().endsWith("/voz/palabras.srt")) console.error(`[página] ${r.status()} ${decodeURIComponent(r.url())}`); });
 page.on("pageerror", (e) => { console.error("[página]", e.message); process.exitCode = 1; });
 
-await page.goto(pathToFileURL(join(dir, PAGE + ".html")).href + `?render=1&fmt=${FMT}&scale=${SCALE}`);
-await page.waitForFunction(() => window.seek && window.film && window.film.ready === true, null, { timeout: 60000 });
+// Servidor local (127.0.0.1): las escenas con módulos ES (typefx) no cargan con file://; las clásicas funcionan igual.
+const srv = await servir(RAIZ);
+const rel = relative(RAIZ, join(dir, PAGE + ".html")).split(sep).map(encodeURIComponent).join("/");
+await page.goto(`${srv.url}/${rel}?render=1&fmt=${FMT}&scale=${SCALE}`);
+// si la página falla al cargar (p. ej. una palabra que no está en la voz), se corta al instante en vez de esperar 60 s
+const falla = new Promise((_, mal) => page.once("pageerror", mal));
+try {
+  await Promise.race([page.waitForFunction(() => window.seek && window.film && window.film.ready === true, null, { timeout: 60000 }), falla]);
+} catch (e) {
+  console.error("✖ la escena no cargó:", e.message.split("\n")[0]);
+  await browser.close(); await srv.cerrar(); process.exit(1);
+}
 const film = await page.evaluate(() => ({ w: window.film.w, h: window.film.h, dur: window.film.dur }));
 await page.setViewportSize({ width: film.w, height: film.h });
 const canvas = page.locator("#c");
@@ -56,7 +70,7 @@ if (stills) {
     writeFileSync(f, await frameAt(s));
     console.log("still", f);
   }
-  await browser.close();
+  await browser.close(); await srv.cerrar();
   process.exit();
 }
 
@@ -79,7 +93,7 @@ for (let i = 0; i < total; i++) {
 }
 ff.stdin.end();
 await new Promise((r) => ff.on("close", r));
-await browser.close();
+await browser.close(); await srv.cerrar();
 
 const audio = arg("audio");
 if (audio) {

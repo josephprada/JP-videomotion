@@ -37,7 +37,8 @@ Mostrar lo que existe y preguntar qué se toma, si algo:
 → `reutiliza.de` y, si no habrá diseño nuevo, `reutiliza.diseno_completo: true`.
 
 ## Bloque 4 · Cómo se ve
-1. **Estilo**: los de `estilos/` (describir cada uno en una línea; mostrar `muestra.png` si existe) · el de un video anterior ·
+1. **Estilo**: los de `estilos/` (describir cada uno en una línea; mostrar `muestra.png` si existe; `tipografico` = 100 % voz y
+   tipografía cinética, ideal para promos, citas, explicadores rápidos y frases de marca) · el de un video anterior ·
    **uno nuevo** a partir de una referencia (video, imágenes, una cuenta que le guste) → se crea en la fase de diseño
    (`estilos/_nuevo/LEEME.md`).
 2. **Sistema de diseño / marca**: ninguno · uno de `sistemas-diseno/` · **importar uno**: desde Claude Design, Figma, un manual
@@ -49,7 +50,8 @@ Mostrar lo que existe y preguntar qué se toma, si algo:
 1. **Método**: `canvas` (estable; animación en código, máximo control y consistencia) · `hyperframes` (experimental; tipografía
    cinética y promos) · `generativo` (experimental; IA de imagen/video, looks fotorrealistas, cuesta créditos). Recomendar
    `canvas` salvo que el estilo lo pida.
-2. **Voz**: sintética (proveedor) · su voz grabada · sin voz (solo texto en pantalla y música).
+2. **Voz**: sintética (proveedor: ElevenLabs, Fish Audio u otro; si el agente puede generarla, confirmar costo antes) · su voz grabada ·
+   sin voz (solo texto en pantalla y música). En el estilo tipográfico la voz es el audio principal y manda el ritmo.
 3. **Música**: sintetizada en código (sin licencias) · una pista que entrega · sin música.
 4. **Subtítulos** (preguntar siempre que haya voz, sobre todo si es para redes): «La mayoría ve en redes sin sonido.
    ¿Los quemamos en el video?» quemados (recomendado para redes) · solo archivo .srt para subir · ambos · ninguno.

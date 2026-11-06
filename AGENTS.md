@@ -24,10 +24,10 @@ jp.config.yaml       configuración de esta instalación (la crea el bootstrap; 
 config/defecto.yaml  valores por defecto (no se edita)
 .jp/local.yaml       datos locales de la máquina (agente detectado); no se versiona
 flujos/              procedimientos paso a paso (bootstrap, entrevista, producción, sistema de diseño)
-nucleo/              motor genérico: CONTRATO.md, TRAMPAS.md, CLI jp.mjs, render, lib/, kit/, tools/, prompts/
+nucleo/              motor genérico: CONTRATO.md, TRAMPAS.md, CLI jp.mjs, render, lib/, kit/, tools/, prompts/, vendor/typefx (tipografía cinética, MIT)
 perfiles/            QUÉ tipo de video: fases, compuertas y estructura (libre, historia-narrada, explicador, promo-lanzamiento, tutorial)
 metodos/             CÓMO se produce cada fase (canvas estable · hyperframes y generativo experimentales)
-estilos/             CÓMO se ve (plano, comic; _nuevo/ para crear uno)
+estilos/             CÓMO se ve (plano, comic, tipografico; _nuevo/ para crear uno)
 sistemas-diseno/     la MARCA: colores, tipografías, logos (importables desde Claude Design, Figma, manuales)
 universos/           personajes y escenarios compartidos entre videos (_ejemplo/ trae uno completo)
 videos/              UNA CARPETA POR VIDEO con estructura fija (ver videos/LEEME.md); _plantilla/ es la base
@@ -59,6 +59,7 @@ node nucleo/jp.mjs estado <video>         # fases, la actual y qué leer
 node nucleo/jp.mjs completar <video> <fase> [--nota "…"]
 node nucleo/jp.mjs reabrir <video> <fase> [--nota "…"]
 node nucleo/jp.mjs subtitulos <video> [--quemar] [--entrada <mp4>]
+node nucleo/jp.mjs servir [--puerto 5180]  # vista previa en vivo de las escenas
 ```
 Render y herramientas del método canvas: `metodos/canvas/METODO.md`.
 

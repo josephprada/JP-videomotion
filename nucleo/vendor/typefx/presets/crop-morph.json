@@ -1,0 +1,14 @@
+{
+  "id": "crop-morph",
+  "name": "Crop Morph",
+  "description": "Un glifo que se transforma en otro, visto a tres escalas a la vez.",
+  "source": { "text": "A", "cap": 600, "x": 960, "y": 840, "align": "center", "wght": 900, "wdth": 100, "tol": 0.3 },
+  "stack": [
+    ["glyph-morph", { "sequence": "AMORPH", "perStep": 0.5, "easing": "inOutCubic" }],
+    ["scale-cropping", { "windows": [
+      { "x": 0, "y": 0, "w": 640, "h": 1080, "zoom": 6, "focus": [960, 560], "surface": "surfaceA", "role": "onSurfaceA" },
+      { "x": 640, "y": 0, "w": 640, "h": 1080, "zoom": 1.4, "focus": [960, 560], "surface": "paper" },
+      { "x": 1280, "y": 0, "w": 640, "h": 1080, "zoom": 0.35, "focus": [960, 560], "surface": "surfaceB", "role": "onSurfaceB" }
+    ] }]
+  ]
+}

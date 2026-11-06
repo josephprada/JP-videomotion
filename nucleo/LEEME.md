@@ -5,7 +5,7 @@ El motor de JP-videomotion. Genérico: no sabe de ningún video, universo, estil
 ```
 CONTRATO.md          reglas que nadie puede romper (render determinista, un solo reloj, calidad antes de mostrar)
 TRAMPAS.md           errores que ya costaron caro; se leen antes de producir
-jp.mjs               CLI: doctor · agente · catalogo · nuevo · estado · completar · reabrir · subtitulos
+jp.mjs               CLI: doctor · agente · catalogo · nuevo · estado · completar · reabrir · subtitulos · servir
 render.mjs           motor de render: --film --fps --sub --from --to --stills --fmt --scale --audio --page --out
 navegador.mjs        busca Chrome/Chromium/Edge en Windows, macOS y Linux (o CHROME_PATH)
 lib/fases.mjs        motor de fases: herencia de perfiles, saltos, compuertas y estado de cada video
@@ -21,6 +21,11 @@ kit/luz.js           luz práctica: mapa de luz multiplicado + halos
 kit/acabado.js       papel, grano y viñeta configurables
 kit/comic.js         gramática de cómic: semitono, «en dos», onomatopeyas, globos, viñetas, pincel
 kit/svgctx.js        contexto que graba SVG (exporta hojas vectoriales con el mismo código del canvas)
+kit/fuentes.js       carga de fuentes de un estilo sin servidor; ready no llega antes que la fuente
+kit/tipo.mjs         tipografía cinética: typefx con el reloj y las palabras de la voz (módulo ES)
+lib/tipovoz.mjs      buscar palabras de la voz, paletas por roles desde la marca, tamaño por formato
+lib/servidor.mjs     servidor estático local (render y vista previa); nunca sirve fuera del repo
+vendor/typefx/       motor de tipografía cinética de Lorena Bordonaba (MIT): 12 efectos, fuentes y docs (ver su LEEME.md)
 tools/               tiempos, storyboard, video, mezcla, critica, determinismo, claves, ref-frames, hoja, beats, svg2png
 prompts/             critica.txt, referencia.txt, brief-plantilla.md, spec-estados.xml
 ```
@@ -33,5 +38,5 @@ node nucleo/render.mjs --film videos/001-x/escenas/escena1 --stills 0.5,1.5,2.5 
 node nucleo/render.mjs --film videos/001-x/escenas/escena1 --scale 0.5             # animatic de una escena
 bash nucleo/tools/video.sh videos/001-x animatic                                    # video completo
 ```
-Vista previa en vivo: abrir el `index.html` de una escena en Chrome (sin `?render`). Las escenas cargan el núcleo con
-rutas relativas (`../../../../nucleo/…`), así funcionan con doble clic y en el render, sin servidor.
+Vista previa en vivo: `node nucleo/jp.mjs servir` y abrir la escena en el navegador (las escenas clásicas también abren con doble clic;
+las del estilo tipográfico usan módulos ES y necesitan el servidor). El render levanta su propio servidor local (127.0.0.1).
