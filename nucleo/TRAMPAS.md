@@ -9,6 +9,10 @@ que no dependa de un estilo (las de un estilo van en su `ESTILO.md`).
 - **Transparencia sobre grupos** (`globalAlpha` a un público, por ejemplo): cada figura se transparenta y se encima. Para apagar algo, se dibuja opaco y se pone una capa oscura encima.
 - **Imágenes en el canvas** (fotos, capturas): abiertas por `file://` (doble clic), Chrome «contamina» el lienzo y `toDataURL` falla con *Tainted canvases may not be exported*. Por eso `render.mjs` sirve las escenas por HTTP local (mismo origen) y la vista previa con imágenes se abre con `node nucleo/jp.mjs servir`. Las imágenes se esperan antes de `ready` (`ESCENA.crear({ cargar })`).
 - **Cortar un `video.sh` a medias** no detiene los `render.mjs` que ya lanzó, y el script sigue arrancando las escenas pendientes con el código que haya en ese momento. Si cambias una escena durante un render, detén cada proceso `render.mjs` (no solo el script), borra los `out/final.mp4` afectados y rerenderiza solo esas escenas.
+- **Raster por GPU no es exacto entre procesos**: con el lienzo acelerado (por defecto, rápido), el texto grande bajo ciertas
+  transformaciones (rotado, con zoom de cámara) puede salir 1 nivel distinto en algún píxel de un render a otro. No se ve, pero
+  cambia el hash. `determinismo.sh` y `video.sh final` usan `--raster software` (exacto, ~45–70 % más lento); animatics, stills y
+  storyboard van por GPU. Si comparas dos renders a mano, usa `--raster software` en ambos.
 - **Fuentes**: si `window.film.ready` se pone en `true` antes de que la hoja de estilos de la fuente cargue, el primer cuadro sale con la fuente de respaldo. Los estilos cargan sus fuentes con una promesa (`ESTILO.listo`) que el armazón espera.
 
 ## Tiempo y voz

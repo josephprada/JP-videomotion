@@ -9,6 +9,7 @@
 //   node render.mjs --film <p> --fmt 1x1              → otro formato desde la misma línea de tiempo
 //   node render.mjs --film <p> --scale 0.5            → animatic a media resolución
 //   node render.mjs --film <p> --page hoja --stills 0  → otra página (hoja de modelo, pruebas)
+//   node render.mjs --film <p> --raster software       → raster exacto (determinismo y final); por defecto gpu (rápido)
 import { chromium } from "playwright-core";
 import { spawn } from "node:child_process";
 import { mkdirSync, writeFileSync, existsSync } from "node:fs";
@@ -16,6 +17,7 @@ import { join, resolve, dirname, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { lanzar } from "./navegador.mjs";
 import { servir } from "./lib/servidor.mjs";
+import { argsNavegador } from "./lib/raster.mjs";
 
 const argv = process.argv.slice(2);
 const arg = (k, d) => { const i = argv.indexOf("--" + k); return i >= 0 ? argv[i + 1] : d; };
@@ -32,7 +34,9 @@ const PAGE = arg("page", "index");                 // otra página de la pelícu
 const OUT = join(dir, "out");
 mkdirSync(OUT, { recursive: true });
 
-const browser = await lanzar(chromium, { args: ["--disable-gpu-vsync", "--font-render-hinting=none"] });
+let args;
+try { args = argsNavegador(arg("raster", "gpu")); } catch (e) { console.error(e.message); process.exit(1); }
+const browser = await lanzar(chromium, { args });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 // errores de la página; los 404 se informan con su URL (el genérico «Failed to load resource» no dice cuál).
 // voz/palabras.srt es opcional: una escena sin voz lo pide y usa sus tiempos de respaldo.

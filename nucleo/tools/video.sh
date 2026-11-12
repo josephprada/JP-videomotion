@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Renderiza todas las escenas de un video y las une con su audio global (<video>/montaje/).
 #   bash nucleo/tools/video.sh videos/001-ejemplo animatic [fmt]   → media resolución, 30 fps, sin desenfoque (revisión de ritmo)
-#   bash nucleo/tools/video.sh videos/001-ejemplo final [fmt]      → resolución completa, 60 fps, --sub 4
+#   bash nucleo/tools/video.sh videos/001-ejemplo final [fmt]      → resolución completa, 60 fps, --sub 4, raster exacto (software)
 # fmt: 9x16 (por defecto) | 1x1 | 16x9, desde la misma línea de tiempo.
 # El orden de las escenas sale de <video>/montaje/escenas.txt (una carpeta de <video>/escenas/ por línea).
 # Escenas en paralelo: 3 (JP_PARALELO para cambiarlo). Salida: <video>/montaje/out/<modo>[_fmt].mp4
@@ -11,7 +11,7 @@ video="${1:?falta la carpeta del video, p. ej. videos/001-ejemplo}"; modo="${2:-
 V="$RAIZ/$video"; M="$V/montaje"
 nombre="$modo"; [ "$fmt" = 9x16 ] || nombre="${modo}_$fmt"
 mapfile -t ESCENAS < <(tr -d '\r' < "$M/escenas.txt" | grep -v '^\s*$')
-if [ "$modo" = final ]; then opts=(--fps 60 --sub 4); else opts=(--fps 30 --scale 0.5 --crf 20); fi
+if [ "$modo" = final ]; then opts=(--fps 60 --sub 4 --raster software); else opts=(--fps 30 --scale 0.5 --crf 20); fi
 mkdir -p "$M/out"
 pids=()
 for e in "${ESCENAS[@]}"; do
