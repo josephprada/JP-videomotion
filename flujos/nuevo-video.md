@@ -40,7 +40,8 @@ Mostrar lo que existe y preguntar qué se toma, si algo:
 1. **Estilo**: los de `estilos/` (describir cada uno en una línea; mostrar `muestra.png` si existe; `tipografico` = 100 % voz y
    tipografía cinética, ideal para promos, citas, explicadores rápidos y frases de marca; `tarjetas` = tarjetas de interfaz que
    entran enfocándose sobre un escenario continuo, para comparativas, tutoriales y explicadores de producto; `vox` = collage
-   de archivo con mapas, recortes y marcador amarillo, para historia, geografía y datos; `capas` = paisaje 2.5D con parallax,
+   de archivo con mapas, recortes y marcador amarillo, para historia, geografía y datos (sus ilustraciones se generan con la
+   skill jp-skill-image: si no está instalada, ofrecer instalarla; ver `estilos/vox/ESTILO.md`); `capas` = paisaje 2.5D con parallax,
    niebla, rayos y reflejo, para naturaleza, ambientes y aperturas emotivas) · el de un video anterior ·
    **uno nuevo** a partir de una referencia (video, imágenes, una cuenta que le guste) → se crea en la fase de diseño
    (`estilos/_nuevo/LEEME.md`).
