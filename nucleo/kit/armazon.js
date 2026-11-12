@@ -1,4 +1,5 @@
 // Armazón genérico de una película (ruta A): lienzo, contrato window.seek/window.film, planos, fuentes, acabado y vista previa.
+// fondo: un color o una función (g, W, H, t) para un escenario continuo (degradado, luz) que nunca se corta entre planos.
 // No sabe de ningún universo ni estilo: el escenario lo pone cada escena y el look lo pone estilos/<estilo>/estilo.js.
 //   const P = ARMAZON.crear({ dur: 7.9, fondo: "#2E2160", fuentes: ["800 40px Montserrat"], acabado: ACABADO.pintar });
 //   P.planos([[0, 3.1, fnA], [3.1, 7.9, fnB]]);   // fn(t, u): t = tiempo de la escena, u = tiempo dentro del plano
@@ -10,6 +11,12 @@
   function planoEn(planos, t) {
     for (const p of planos) if (t >= p[0] && t < p[1]) return p;
     return null;
+  }
+  // fondo: un color o una función (g, W, H, t) que pinta un escenario continuo (degradado, luz) detrás de todos los planos
+  function pintarFondo(g, W, H, t, fondo) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    if (typeof fondo === "function") return fondo(g, W, H, t);
+    g.fillStyle = fondo; g.fillRect(0, 0, W, H);
   }
 
   function crear({ dur, fondo = "#2E2160", fuentes = [], acabado = null, cargar = [] }) {
@@ -25,7 +32,7 @@
       capa(cam, p, fn) { CAMARA.capa(g, W, H, ESC, cam, p, fn); },
     };
     function seek(t) {
-      g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = fondo; g.fillRect(0, 0, W, H);
+      pintarFondo(g, W, H, t, fondo);
       const pl = planoEn(PLANOS, t);
       if (pl) pl[2](t, t - pl[0]);
       if (acabado) acabado(g, W, H, t);
@@ -38,7 +45,7 @@
     return P;
   }
 
-  const api = { crear, planoEn, tamano, FORMATOS };
+  const api = { crear, planoEn, pintarFondo, tamano, FORMATOS };
   g0.ARMAZON = api;
   if (typeof module !== "undefined") module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : window);

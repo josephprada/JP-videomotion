@@ -27,3 +27,13 @@ test("tamano: 9x16 por defecto y los otros formatos desde la misma línea de tie
   assert.deepEqual(A.tamano("16x9", 0.5), [960, 540]);
   assert.deepEqual(A.tamano(null, 1), [1080, 1920]);
 });
+
+test("pintarFondo: un color llena el cuadro; una función recibe (g, W, H, t) y pinta el escenario", () => {
+  const llamadas = [];
+  const g = { setTransform() {}, fillRect: (...a) => llamadas.push(["rect", ...a]), set fillStyle(v) { llamadas.push(["color", v]); } };
+  A.pintarFondo(g, 100, 200, 1.5, "#123456");
+  assert.deepEqual(llamadas, [["color", "#123456"], ["rect", 0, 0, 100, 200]]);
+  let recibido = null;
+  A.pintarFondo(g, 100, 200, 1.5, (...a) => { recibido = a; });
+  assert.deepEqual(recibido.slice(1), [100, 200, 1.5]);
+});
