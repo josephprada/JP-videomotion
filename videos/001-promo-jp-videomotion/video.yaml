@@ -43,7 +43,7 @@ reutiliza:
 modo: interactivo # interactivo (para en cada compuerta) | automatico (solo donde hace falta una persona)
 
 estado:
-  fase: entrega
+  fase: ajustes
   completadas:
     [
       brief,
@@ -57,7 +57,8 @@ estado:
       produccion,
       sonido,
       render,
-      subtitulos
+      subtitulos,
+      entrega
     ]
   historial:
     - fecha: 2026-11-12
@@ -113,3 +114,7 @@ estado:
       fase: subtitulos
       accion: completada
       nota: "Solo archivo: entregables/final/subtitulos.srt, ajustado al guion"
+    - fecha: 2026-11-12
+      fase: entrega
+      accion: completada
+      nota: "Aprobado por la persona: «esta genial»"
