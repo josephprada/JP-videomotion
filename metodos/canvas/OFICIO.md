@@ -20,6 +20,18 @@ Cómo se construye una escena buena. Lo obligatorio está en `nucleo/CONTRATO.md
 - Animación limitada: `M.held` mantiene poses; no todo tiene que moverse todo el tiempo.
 - Cámara: punch-in en el golpe, deriva lenta en lo emocional, sacudida (`M.shake`) solo en impactos.
 
+## Transiciones: foco y continuidad
+- **El escenario nunca se corta.** Un fondo continuo (`fondo` como función: degradado, luz, papel, cielo) y lo que cambia
+  entra y sale encima. El ojo descansa porque el mundo no salta; los cortes secos quedan para los golpes.
+- **Cambio de foco, no fundido.** Lo que entra se enfoca (desenfoque + opacidad + escala 0,94 → 1) y lo que sale se desenfoca
+  (`FOCO.estado` + `FOCO.dibujar`, con `caja`). 0,35–0,5 s, escalonado 0,1–0,35 s entre elementos.
+- **El siguiente plano ya está en el anterior.** Una tarjeta que crece hasta llenar el cuadro, un zoom a través de un objeto,
+  la geometría de salida que se vuelve la de entrada. Antes de cortar, pregunta qué elemento puede llevar al ojo de un plano al otro.
+- **Títulos karaoke**: palabra por palabra con la voz, cada una enfocándose (`FOCO.texto`); la palabra clave en otra familia.
+- **Profundidad de campo** para separar planos: el foco en la acción y el resto desenfocado según su distancia
+  (`FOCO.profundidad`). Lo que va desenfocado en primer plano es ancho; lo fino desaparece.
+- **Cifras que se cuentan** (`UI.contador`, `UI.digitos`) y **conectores que se dibujan** (`UI.conector`) llevan el ojo a la conclusión.
+
 ## Composición en 9:16
 - La cara del personaje y el texto clave en el tercio central. Nada clave en el 15 % de arriba ni el 25 % de abajo
   (interfaz de la plataforma y subtítulos).

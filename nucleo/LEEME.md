@@ -13,18 +13,23 @@ lib/subtitulos.mjs   subtítulos automáticos: palabras con tiempo → bloques c
 lib/agente.mjs       detecta el agente que trabaja en el repo
 lib/motion.js        resortes de forma cerrada, track(), ruido con semilla, held(), shake, beat
 lib/pixel.js         pc98ify: tramado Bayer 4×4 + paleta de 12 bits + píxel duro + líneas de escaneo
-kit/armazon.js       armazón de una escena: lienzo, contrato seek/film, planos, fuentes, acabado, vista previa
+kit/armazon.js       armazón de una escena: lienzo, contrato seek/film, planos, fondo (color o escenario continuo), fuentes, acabado, vista previa
 kit/dibujo.js        primitivas planas (sin contorno, sombra de celda, luz de borde; tinta opcional)
 kit/rig.js           rig humanoide: IK, luz y orden de piezas desde el «spec» de un personaje
 kit/camara.js        cámara con parallax por capas
 kit/luz.js           luz práctica: mapa de luz multiplicado + halos
 kit/acabado.js       papel, grano y viñeta configurables
+kit/foco.js          foco de cámara: entradas y salidas por desenfoque, profundidad de campo, texto karaoke
+kit/ui.js            interfaz: tarjetas, insignias, contadores y odómetros, conectores que se dibujan, ondas
+kit/collage.js       collage de archivo: papel envejecido, recortes rasgados, marcador, etiquetas mono, lápiz, retícula, sepia
+kit/capas.js         paisaje 2.5D: parallax en coordenadas de diseño, perfiles, atmósfera, vaivén, rayos, niebla, reflejo
 kit/comic.js         gramática de cómic: semitono, «en dos», onomatopeyas, globos, viñetas, pincel
 kit/svgctx.js        contexto que graba SVG (exporta hojas vectoriales con el mismo código del canvas)
 kit/fuentes.js       carga de fuentes de un estilo sin servidor; ready no llega antes que la fuente
 kit/tipo.mjs         tipografía cinética: typefx con el reloj y las palabras de la voz (módulo ES)
 lib/tipovoz.mjs      buscar palabras de la voz, paletas por roles desde la marca, tamaño por formato
 lib/servidor.mjs     servidor estático local (render y vista previa); nunca sirve fuera del repo
+lib/raster.mjs       modo de raster del render: gpu (rápido) o software (exacto: determinismo y final)
 vendor/typefx/       motor de tipografía cinética de Lorena Bordonaba (MIT): 12 efectos, fuentes y docs (ver su LEEME.md)
 tools/               tiempos, storyboard, video, mezcla, critica, determinismo, claves, ref-frames, hoja, beats, svg2png
 prompts/             critica.txt, referencia.txt, brief-plantilla.md, spec-estados.xml

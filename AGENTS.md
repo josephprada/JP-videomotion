@@ -27,7 +27,7 @@ flujos/              procedimientos paso a paso (bootstrap, entrevista, producci
 nucleo/              motor genérico: CONTRATO.md, TRAMPAS.md, CLI jp.mjs, render, lib/, kit/, tools/, prompts/, vendor/typefx (tipografía cinética, MIT)
 perfiles/            QUÉ tipo de video: fases, compuertas y estructura (libre, historia-narrada, explicador, promo-lanzamiento, tutorial)
 metodos/             CÓMO se produce cada fase (canvas estable · hyperframes y generativo experimentales)
-estilos/             CÓMO se ve (plano, comic, tipografico; _nuevo/ para crear uno)
+estilos/             CÓMO se ve (plano, comic, tipografico, tarjetas, vox, capas; _nuevo/ para crear uno)
 sistemas-diseno/     la MARCA: colores, tipografías, logos (importables desde Claude Design, Figma, manuales)
 universos/           personajes y escenarios compartidos entre videos (_ejemplo/ trae uno completo)
 videos/              UNA CARPETA POR VIDEO con estructura fija (ver videos/LEEME.md); _plantilla/ es la base
