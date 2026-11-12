@@ -1,0 +1,5 @@
+nombre: Capas (2.5D)
+descripcion: Paisaje pintado en planos con parallax, perspectiva atmosférica, niebla, rayos de luz, reflejo en el agua y profundidad de campo. Naturaleza, ambientes, aperturas emotivas, cuentos, fondos para voz en off
+metodos: [canvas]
+plantilla: plantilla       # estilos/capas/plantilla/escena1 reemplaza la escena de la plantilla del video
+fuentes: []                # sin texto propio: los rótulos los pone el video (o un estilo combinado)
