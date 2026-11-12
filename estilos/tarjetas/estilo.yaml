@@ -1,0 +1,5 @@
+nombre: Tarjetas (escenario continuo y foco)
+descripcion: Tarjetas de interfaz que entran y salen enfocándose sobre un escenario que nunca se corta; títulos karaoke sans + serif itálica; contadores y conectores. Comparativas, tutoriales, explicadores de producto
+metodos: [canvas]
+plantilla: plantilla       # estilos/tarjetas/plantilla/escena1 reemplaza la escena de la plantilla del video
+fuentes: ["Inter 600/800", "Instrument Serif itálica (palabra clave)"]
