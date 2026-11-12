@@ -1,0 +1,5 @@
+nombre: Vox (collage de archivo)
+descripcion: Papel envejecido, mapas, recortes con borde rasgado, imágenes de archivo en sepia, marcador amarillo, etiquetas mono y lápiz rojo. Historia, geografía, datos explicados, periodismo visual
+metodos: [canvas]
+plantilla: plantilla       # estilos/vox/plantilla/escena1 reemplaza la escena de la plantilla del video
+fuentes: ["Anton (titulares)", "IBM Plex Mono 500 (etiquetas)", "IM Fell English (texto de archivo)"]
