@@ -26,11 +26,12 @@ nunca sus gráficos ni su marca. Kit: `nucleo/kit/collage.js` (+ `UI.contador` p
 Vox vive de imágenes de archivo: grabados, retratos, barcos, instrumentos. Para las que **ilustran** (no las que prueban un hecho),
 la skill **jp-skill-image** genera cada imagen con Flux (Cloudflare Workers AI) desde una descripción.
 
-1. **¿Está instalada?** Existe `~/.claude/skills/jp-skill-image/SKILL.md`. Si no, **ofrécele a la persona instalarla** y, si acepta, instálala tú:
-   - macOS, Linux o Git Bash:
-     `d=$(mktemp -d) && curl -fsSL https://jpdeveloper.lavalex.co/jp-skill-image.zip -o "$d/s.zip" && mkdir -p ~/.claude/skills && unzip -oq "$d/s.zip" -d ~/.claude/skills && rm -rf "$d"`
-   - Windows (PowerShell):
-     `$z="$env:TEMP\jp-skill-image.zip"; Invoke-WebRequest https://jpdeveloper.lavalex.co/jp-skill-image.zip -OutFile $z; Expand-Archive $z "$HOME\.claude\skills" -Force; Remove-Item $z`
+1. **¿Está instalada?** Existe `~/.claude/skills/jp-skill-image/SKILL.md`. Si no, **ofrécele a la persona instalarla** y, si acepta,
+   instálala tú desde su repositorio ([github.com/josephprada/jp-skill-image](https://github.com/josephprada/jp-skill-image), MIT):
+   `git clone https://github.com/josephprada/jp-skill-image ~/.claude/skills/jp-skill-image`
+   (en PowerShell: `git clone https://github.com/josephprada/jp-skill-image "$HOME\.claude\skills\jp-skill-image"`).
+   - Sin git: el zip `https://jpdeveloper.lavalex.co/jp-skill-image.zip`, **verificando antes su SHA-256** con la huella publicada
+     en el README del repositorio; si no coincide, no se instala.
    - Requiere Python 3.8+ (sin dependencias). En Claude Code, si la skill no aparece en la lista, reinicia la sesión.
 2. **Credenciales**: `CF_ACCOUNT_ID` y `CF_API_TOKEN` de Cloudflare, en el `.env` de la raíz del repo (está en `.gitignore`)
    o en `~/.claude/skills/jp-skill-image/.env`. Si faltan, la skill explica en 3 pasos cómo obtenerlas: no generes sin ellas.

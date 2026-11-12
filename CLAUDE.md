@@ -47,8 +47,9 @@ Si la persona tiene sus sistemas de diseño en **Claude Design** y quiere usarlo
 - **Tipografía cinética**: no requiere skills externas; typefx ya viene en `nucleo/vendor/typefx` (estilo `tipografico`). Su skill original
   (`github.com/lorena-bordonaba-pau/typefx`) solo hace falta para su propio formato de proyecto, no para este repo.
 - **jp-skill-image** (generar imágenes con Flux en Cloudflare): recomendada para el estilo `vox` (grabados e ilustraciones de archivo)
-  y para cualquier recurso ilustrativo. Si no está en `~/.claude/skills/jp-skill-image`, ofrecer instalarla desde
-  `https://jpdeveloper.lavalex.co/jp-skill-image.zip` (comandos en `estilos/vox/ESTILO.md`) y avisar que puede requerir reiniciar la sesión.
+  y para cualquier recurso ilustrativo. Si no está en `~/.claude/skills/jp-skill-image`, ofrecer instalarla con `git clone` desde
+  `github.com/josephprada/jp-skill-image` (o su zip verificando el SHA-256 de su README; comandos en `estilos/vox/ESTILO.md`) y avisar
+  que puede requerir reiniciar la sesión.
 - **Higgsfield** u otro conector de generación: método `generativo`, voces y música generadas. Siempre confirmar el costo en créditos antes de generar.
 - **Figma** (conector/MCP): importar sistemas de diseño desde archivos de Figma.
 - **Memoria persistente**: si la tienes, guarda al cerrar cada fase con compuerta un resumen corto (video, fase, decisión) para retomar entre sesiones; la fuente de verdad sigue siendo `video.yaml`.
