@@ -15,3 +15,8 @@ tmp/
 
 # referencias externas de cada video (derechos de terceros; no se versionan)
 refs/
+
+# credenciales (Cloudflare para jp-skill-image, APIs de voz…): nunca se versionan
+.env
+.env.*
+!.env.example
