@@ -1,0 +1,115 @@
+# Manifiesto del video. Lo llena la entrevista (flujos/nuevo-video.md) y lo lee `node nucleo/jp.mjs estado <video>`.
+# Las decisiones con su razón van en LEEME.md; aquí solo los valores.
+id: "001"
+slug: "promo-jp-videomotion"
+titulo: "JP-videomotion: una idea, todos los estilos"
+creado: "2026-11-12"
+
+perfil: promo-lanzamiento # qué tipo de video (perfiles/): libre | historia-narrada | explicador | promo-lanzamiento | tutorial
+estilo: tipografico # cómo se ve (estilos/)
+metodo: canvas # cómo se produce (metodos/): canvas | hyperframes | generativo
+sistema_diseno: jp # marca (sistemas-diseno/<id>) o null
+
+idioma: es # idioma del contenido (narración, textos, subtítulos)
+formatos:
+  - 16x9
+  - 9x16
+duracion: "45-60 s"
+plataformas:
+  - tiktok
+  - instagram-reels
+  - youtube-shorts
+  - youtube
+  - x
+
+voz: tts # tts | humana | ninguna
+musica: sintetizada # sintetizada | pista | ninguna
+subtitulos:
+  modo: archivo # quemados | archivo | ambos | ninguno
+  mayusculas: false
+  max_palabras: 4
+  max_caracteres: 22
+  # fuente: "Arial"         # instalada en el sistema (libass)
+  # tamano: 76
+  # margen_inferior: 520    # px desde abajo; deja libre la interfaz de la plataforma
+
+datos_reales: false # true = el video afirma hechos reales → investigación con fuentes
+marcas_terceros: permitidas # permitidas | prohibidas (uso nominativo; cada uso se registra en DECISIONES.md)
+
+reutiliza:
+  de: [] # videos o universos de los que se toma algo (p. ej. [universos/mi-serie, videos/003-x])
+  diseno_completo: false # true = no hay diseño nuevo (se salta la fase de diseño)
+
+modo: interactivo # interactivo (para en cada compuerta) | automatico (solo donde hace falta una persona)
+
+estado:
+  fase: entrega
+  completadas:
+    [
+      brief,
+      investigacion,
+      guion,
+      voz,
+      tiempos,
+      diseno,
+      storyboard,
+      animatic,
+      produccion,
+      sonido,
+      render,
+      subtitulos
+    ]
+  historial:
+    - fecha: 2026-11-12
+      fase: brief
+      accion: completada
+      nota: "Brief aprobado: misma idea, varios estilos"
+    - fecha: 2026-11-12
+      fase: investigacion
+      accion: completada
+      nota: Brief de producto aprobado; afirmaciones verificadas en investigacion.md
+    - fecha: 2026-11-12
+      fase: guion
+      accion: completada
+      nota: Guion aprobado con etiquetas de emoción; marca pronunciada en inglés
+    - fecha: 2026-11-12
+      fase: voz
+      accion: completada
+      nota: Toma ElevenLabs de 42,5 s aprobada; +0,6 s de pausa entre los 6 estilos →
+        narracion-completa.wav de 46,1 s
+    - fecha: 2026-11-12
+      fase: tiempos
+      accion: completada
+      nota: 15 escenas en las pausas de la voz; total 48,6 s (montaje/cortes.md)
+    - fecha: 2026-11-12
+      fase: diseno
+      accion: completada
+      nota: "Look JP aprobado: firma en canvas, punto rojo como motivo, seis pieles;
+        persona de _ejemplo para plano"
+    - fecha: 2026-11-12
+      fase: storyboard
+      accion: completada
+      nota: "Storyboard aprobado: 15 escenas, 45 cuadros"
+    - fecha: 2026-11-12
+      fase: animatic
+      accion: completada
+      nota: "Saltado a petición de la persona (por tiempo): va directo al final en
+        alta calidad"
+    - fecha: 2026-11-12
+      fase: produccion
+      accion: completada
+      nota: 15 escenas con crítica registrada en critica.md
+    - fecha: 2026-11-12
+      fase: sonido
+      accion: completada
+      nota: Pulso electrónico 120 BPM anclado al logo + efectos por palabra; mezcla
+        −14 LUFS
+    - fecha: 2026-11-12
+      fase: render
+      accion: completada
+      nota: Final 9:16 y 16:9, 48,6 s, 60 fps, raster por software; determinismo ✔ en
+        escena2 y escena8
+    - fecha: 2026-11-12
+      fase: subtitulos
+      accion: completada
+      nota: "Solo archivo: entregables/final/subtitulos.srt, ajustado al guion"

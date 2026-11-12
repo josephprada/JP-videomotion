@@ -1,0 +1,431 @@
+<title>JP en movimiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ink: #0b0b0c;
+    --band: #121214;
+    --paper: #f2efe9;
+    --accent: #e63329;
+    --accent-text: #f53d31;
+    --muted: color-mix(in srgb, #f2efe9 78%, transparent);
+    --faint: color-mix(in srgb, #f2efe9 52%, transparent);
+    --line: color-mix(in srgb, #f2efe9 14%, transparent);
+    --line-strong: color-mix(in srgb, #f2efe9 40%, transparent);
+    --display: "Anton", "Arial Narrow", sans-serif;
+    --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SFMono-Regular", monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding-inline: clamp(16px, 4vw, 48px);
+    padding-block: 0 64px;
+  }
+  ::selection { background: var(--accent); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
+  .wrap { max-width: 76rem; margin-inline: auto; }
+  p { margin: 0; }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .display {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .copy { color: var(--muted); max-width: 62ch; }
+
+  header.top {
+    display: grid;
+    gap: 24px;
+    padding-block: 64px 40px;
+  }
+  @media (min-width: 900px) {
+    header.top { grid-template-columns: 7fr 5fr; align-items: end; gap: 48px; }
+  }
+  header.top h1 { font-size: clamp(2.75rem, 7.5vw, 6rem); }
+  header.top h1 span { color: var(--accent); }
+
+  .stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 16px 0;
+  }
+  .seg { display: inline-flex; border: 1px solid var(--line-strong); }
+  .seg button, .btn {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    padding: 10px 14px;
+    cursor: pointer;
+  }
+  .seg button + button { border-left: 1px solid var(--line-strong); }
+  .seg button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+  .btn { border: 1px solid var(--line-strong); color: var(--paper); }
+  .btn:hover, .seg button:hover { color: var(--paper); }
+  .seg button[aria-pressed="true"]:hover { color: var(--ink); }
+  .group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .group .label { margin-right: 4px; }
+
+  section.beats {
+    margin-top: 56px;
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+    display: grid;
+    gap: 24px;
+  }
+  section.beats h2, section.anatomy h2, section.next h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+  ol.time {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1px; background: var(--line);
+  }
+  @media (min-width: 760px) { ol.time { grid-template-columns: repeat(4, 1fr); } }
+  ol.time li { background: var(--ink); padding: 16px 16px 16px 0; display: grid; gap: 6px; align-content: start; }
+  ol.time b {
+    font-family: var(--mono); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.12em;
+    color: var(--accent-text); font-variant-numeric: tabular-nums;
+  }
+  ol.time strong { font-weight: 500; }
+  ol.time p { color: var(--muted); font-size: 0.9375rem; }
+
+  section.anatomy {
+    margin-top: 56px;
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+    display: grid;
+    gap: 32px;
+  }
+  @media (min-width: 900px) { ul.rules { grid-template-columns: repeat(2, 1fr); column-gap: 32px; } }
+  .sheet { background: var(--band); border: 1px solid var(--line); overflow-x: auto; }
+  .sheet svg { display: block; width: 100%; min-width: 520px; height: auto; }
+  ul.rules { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 14px; }
+  ul.rules li { display: grid; grid-template-columns: 7rem 1fr; gap: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+  ul.rules span { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); padding-top: 3px; }
+  ul.rules p { color: var(--muted); font-size: 0.9375rem; }
+
+  section.next {
+    margin-top: 56px;
+    border-top: 1px solid var(--line);
+    padding-top: 40px;
+    display: grid;
+    gap: 16px;
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="J" d="M131.5 0.6C130.7 1.3 130.8 0.6 130.1 27.1C129.9 33.1 129.7 40.5 129.7 43.4C129.6 46.3 129.5 50.7 129.4 53.0C129.3 55.3 129.2 59.9 129.2 63.2C128.9 73.8 128.5 90.3 128.3 95.5C128.3 98.3 128.1 104.1 128.0 108.4C127.9 112.7 127.8 117.6 127.8 119.2C127.6 124.1 127.4 131.6 127.1 143.5C126.9 149.6 126.8 156.8 126.7 159.4C126.6 163.7 126.3 173.4 126.1 182.2C125.9 191.8 125.4 196.5 124.3 201.5C120.9 215.8 111.7 225.5 99.0 228.2C93.6 229.3 89.2 229.3 82.3 228.2C72.6 226.7 65.8 222.5 61.6 215.4C59.4 211.7 57.6 206.2 57.0 201.2C56.9 200.3 56.8 199.0 56.7 198.3C56.5 196.7 56.5 185.4 56.7 183.8C56.8 183.1 57.0 181.7 57.1 180.5C58.8 166.9 67.0 156.7 78.4 153.8C81.1 153.1 81.3 152.9 82.3 150.1C85.8 140.8 84.7 130.7 79.4 122.6C78.3 120.9 74.6 117.3 72.8 116.1C70.2 114.4 67.2 113.3 64.0 112.8C61.4 112.3 55.8 112.5 53.0 113.0C47.4 114.2 40.5 117.2 34.0 121.4C16.0 133.2 4.4 152.4 0.9 176.3C0.8 177.3 0.5 178.5 0.3 178.9C-0.2 180.2 -0.1 201.4 0.4 202.8C0.6 203.2 0.9 204.4 1.0 205.3C4.0 231.4 18.2 251.8 41.3 263.4C50.9 268.2 63.6 271.7 75.5 272.9C77.3 273.1 78.6 273.3 79.2 273.6C80.8 274.1 102.4 274.2 103.6 273.7C104.1 273.4 105.7 273.1 107.8 272.8C137.1 268.7 160.0 253.1 172.0 229.4C174.1 225.4 174.6 224.2 176.0 220.6C177.3 217.3 179.5 209.7 179.9 207.0C180.0 206.6 180.2 205.3 180.4 204.1C181.6 197.8 181.7 195.0 182.2 174.4C182.4 168.4 182.6 161.3 182.7 158.5C182.7 155.7 182.9 148.5 183.1 142.5C183.4 130.0 183.6 122.5 183.8 118.4C183.8 116.8 183.9 112.0 184.0 107.6C184.1 103.2 184.2 97.1 184.3 94.0C184.4 90.9 184.5 86.5 184.6 84.2C184.6 81.8 184.7 77.4 184.8 74.3C184.9 71.3 185.1 63.9 185.2 58.0C185.4 52.1 185.6 45.0 185.7 42.2C185.9 34.4 186.3 16.0 186.5 10.0C186.5 7.0 186.7 4.4 186.7 4.3C186.8 4.1 186.8 3.6 186.8 3.2C186.6 2.0 186.5 2.0 181.8 1.9C179.6 1.9 175.3 1.8 172.3 1.7C165.4 1.5 146.4 1.0 140.0 0.9C136.0 0.8 135.0 0.7 134.4 0.5C133.1 -0.1 132.2 -0.1 131.5 0.6Z"/>
+    <path id="P" d="M268.8 273.5C269.6 272.8 269.5 273.5 270.2 247.0C270.4 241.0 270.6 233.6 270.6 230.7C270.7 227.8 270.8 223.4 270.9 221.1C271.0 218.8 271.1 214.2 271.1 210.9C271.4 200.3 271.8 183.8 272.0 178.6C272.0 175.8 272.2 170.0 272.3 165.7C272.4 161.4 272.5 156.5 272.5 154.9C272.7 150.0 272.9 142.5 273.2 130.6C273.4 124.5 273.5 117.3 273.6 114.7C273.7 110.4 274.0 100.7 274.2 91.9C274.4 82.3 274.9 77.6 276.0 72.6C279.4 58.3 288.6 48.6 301.3 45.9C306.7 44.8 311.1 44.8 318.0 45.9C327.7 47.4 334.5 51.6 338.7 58.7C340.9 62.4 342.7 67.9 343.3 72.9C343.4 73.8 343.5 75.1 343.6 75.8C343.8 77.4 343.8 88.7 343.6 90.3C343.5 91.0 343.3 92.4 343.2 93.6C341.5 107.2 333.3 117.4 321.9 120.3C319.2 121.0 319.0 121.2 318.0 124.0C314.5 133.3 315.6 143.4 320.9 151.5C322.0 153.2 325.7 156.8 327.5 158.0C330.1 159.7 333.1 160.8 336.3 161.3C338.9 161.8 344.5 161.6 347.3 161.1C352.9 159.9 359.8 156.9 366.3 152.7C384.3 140.9 395.9 121.7 399.4 97.8C399.5 96.8 399.8 95.6 400.0 95.2C400.5 93.9 400.4 72.7 399.9 71.3C399.7 70.9 399.4 69.7 399.3 68.8C396.3 42.7 382.1 22.3 359.0 10.7C349.4 5.9 336.7 2.4 324.8 1.2C323.0 1.0 321.7 0.8 321.1 0.5C319.5 0.0 297.9 -0.1 296.7 0.4C296.2 0.7 294.6 1.0 292.5 1.3C263.2 5.4 240.3 21.0 228.3 44.7C226.2 48.7 225.7 49.9 224.3 53.5C223.0 56.8 220.8 64.4 220.4 67.1C220.3 67.5 220.1 68.8 219.9 70.0C218.7 76.3 218.6 79.1 218.1 99.7C217.9 105.7 217.7 112.8 217.6 115.6C217.6 118.4 217.4 125.6 217.2 131.6C216.9 144.1 216.7 151.6 216.5 155.7C216.5 157.3 216.4 162.1 216.3 166.5C216.2 170.9 216.1 177.0 216.0 180.1C215.9 183.2 215.8 187.6 215.7 189.9C215.7 192.3 215.6 196.7 215.5 199.8C215.4 202.8 215.2 210.2 215.1 216.1C214.9 222.0 214.7 229.1 214.6 231.9C214.4 239.7 214.0 258.1 213.8 264.1C213.8 267.1 213.6 269.7 213.6 269.8C213.5 270.0 213.5 270.5 213.5 270.9C213.7 272.1 213.8 272.1 218.5 272.2C220.7 272.2 225.0 272.3 228.0 272.4C234.9 272.6 253.9 273.1 260.3 273.2C264.3 273.3 265.3 273.4 265.9 273.6C267.2 274.2 268.1 274.2 268.8 273.5Z"/>
+    <!-- Línea central de la J en orden de escritura: arriba, abajo, gancho. La P usa la misma línea girada. -->
+    <path id="Jline" pathLength="1" d="M157 -14 L155.5 178 C153 232 122 250 92 250 C52 250 30 226 30 192 C30 160 46 139 66 137"/>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <p class="label">Monograma · Firma en movimiento</p>
+      <h1 class="display" style="margin-top:18px">El logo escribe<br><span>tu nombre</span></h1>
+    </div>
+    <p class="copy">La J y la P del logo se escriben a la vez. Después la cámara se abre, cada pieza va a su lugar y el resto del nombre se despliega desde detrás de cada inicial. Las demás letras son normales, con el mismo grosor del logo.</p>
+  </header>
+
+  <div class="stage" id="stage">
+    <svg id="scene" viewBox="-158 -678.6 2900 1631.25" role="img" aria-label="Animación: la J y la P del logo se dibujan y forman el nombre Joseph Prada">
+      <defs>
+        <clipPath id="band"><rect x="-2000" y="0" width="7000" height="274"/></clipPath>
+      </defs>
+      <g id="cam" style="transform-box:view-box;transform-origin:1292px 137px">
+        <g id="world" clip-path="url(#band)"></g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="controls">
+    <div class="group">
+      <span class="label">Final</span>
+      <div class="seg" role="group" aria-label="Cómo termina">
+        <button type="button" data-mode="once" aria-pressed="true">Queda el nombre</button>
+        <button type="button" data-mode="loop" aria-pressed="false">Bucle nombre ↔ logo</button>
+      </div>
+    </div>
+    <div class="group">
+      <span class="label">Color</span>
+      <div class="seg" role="group" aria-label="Color del nombre">
+        <button type="button" data-color="split" aria-pressed="true">Iniciales en rojo</button>
+        <button type="button" data-color="red" aria-pressed="false">Todo rojo</button>
+      </div>
+      <button class="btn" type="button" id="replay">Repetir</button>
+    </div>
+  </div>
+
+  <section class="beats">
+    <p class="label">Guion · 2,3 s</p>
+    <h2 class="display">Cuatro tiempos</h2>
+    <ol class="time">
+      <li><b>0,0 – 0,8 s</b><strong>Se escribe el logo</strong><p>La J y la P se dibujan a la vez, con el mismo trazo girado media vuelta.</p></li>
+      <li><b>0,8 – 1,05 s</b><strong>Pausa</strong><p>El logo queda quieto un instante para que se lea como marca.</p></li>
+      <li><b>1,05 – 2,0 s</b><strong>Se abre la cámara</strong><p>La J va al comienzo de Joseph y la P al comienzo de Prada.</p></li>
+      <li><b>1,55 – 2,3 s</b><strong>Se despliega el nombre</strong><p>Las letras salen de detrás de cada inicial, pasando de desenfocadas a nítidas, mientras las iniciales llegan.</p></li>
+    </ol>
+  </section>
+
+  <section class="anatomy">
+    <div>
+      <p class="label">Cómo están hechas las letras</p>
+      <h2 class="display" style="margin-top:14px">Un solo trazo para todo el nombre</h2>
+      <ul class="rules">
+        <li><span>Grosor</span><p>51 unidades en todas las letras, el mismo grosor del logo medido al vectorizar.</p></li>
+        <li><span>Altura</span><p>274 unidades, la altura del logo. Las astas cortan plano arriba y abajo, como la J y la P.</p></li>
+        <li><span>Piezas</span><p>La J de Joseph y la P de Prada son los vectores del logo sin tocar. La P de Joseph y la R son letras normales, con asta y panza cerrada.</p></li>
+        <li><span>Curvas</span><p>La O, la S, la D y el arco de la A son redondos y abiertos, para que conversen con el gancho de la J.</p></li>
+      </ul>
+    </div>
+    <figure class="sheet" style="margin:0">
+      <svg id="sheet" viewBox="-60 -90 2692 470" role="img" aria-label="Las letras de Joseph Prada construidas con el trazo del logo; las piezas originales del logo marcadas en rojo"></svg>
+    </figure>
+  </section>
+
+  <section class="next">
+    <p class="label">Qué sigue</p>
+    <p class="copy">Si te gusta, la llevo al preloader de la web en una versión corta (esta misma, de 2,3 s, o recortando la pausa) y la exporto a video en MP4 con fondo negro y en MOV con transparencia, para usarla al inicio y al cierre de tus videos.</p>
+  </section>
+</div>
+
+<script>
+(() => {
+  const NS = "http://www.w3.org/2000/svg";
+  const RED = "#e63329", PAPER = "#f2efe9";
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const LOGO_X = 1092; // desplazamiento del logo centrado sobre el nombre
+  const W = 51;
+
+  /* Cada letra: ancho y trazos en coordenadas locales (0..274 de alto). Las astas
+     se pasan del borde y el recorte de la banda las deja planas. */
+  const GLYPHS = {
+    O: { w: 196, s: [{ d: "M97.5 25.5C150 25.5 170.5 70 170.5 137C170.5 204 150 248.5 97.5 248.5C45 248.5 25.5 204 25.5 137C25.5 70 45 25.5 97.5 25.5Z", cap: "butt" }] },
+    S: { w: 194, s: [{ d: "M165 64C150 38 126 25.5 97 25.5C58 25.5 28 48 28 80C28 114 60 125 97 137C136 149 168 162 168 196C168 229 138 248.5 97 248.5C64 248.5 40 235 26 210", cap: "round" }] },
+    E: { w: 181, s: [
+      { d: "M181 25.5H25.5V248.5H181", cap: "butt", join: "miter" },
+      { d: "M40 137H163", cap: "butt" },
+    ] },
+    H: { w: 186, s: [
+      { d: "M25.5 -30V304", cap: "butt" },
+      { d: "M160.5 -30V304", cap: "butt" },
+      { d: "M40 137H146", cap: "butt" },
+    ] },
+    A: { w: 200, s: [
+      { d: "M25.5 304V118C25.5 60 58 25.5 100 25.5C142 25.5 174.5 60 174.5 118V304", cap: "butt" },
+      { d: "M40 168H160", cap: "butt" },
+    ] },
+    P: { w: 196, s: [
+      { d: "M25.5 -30V304", cap: "butt" },
+      { d: "M40 25.5H92C141 25.5 170.5 51 170.5 88C170.5 125 141 150.5 92 150.5H40", cap: "butt" },
+    ] },
+    R: { w: 200, s: [
+      { d: "M25.5 -30V304", cap: "butt" },
+      { d: "M40 25.5H92C141 25.5 170.5 51 170.5 88C170.5 125 141 150.5 92 150.5H40", cap: "butt" },
+      { d: "M104 150.5L190 320", cap: "butt" },
+    ] },
+    D: { w: 206, s: [
+      { d: "M25.5 -30V304", cap: "butt" },
+      { d: "M40 25.5H82C146 25.5 180.5 70 180.5 137C180.5 204 146 248.5 82 248.5H40", cap: "butt" },
+    ] },
+  };
+
+  const NAME = [
+    { k: "J", x: 0, ini: true },
+    { k: "O", x: 223 }, { k: "S", x: 455 }, { k: "E", x: 685 },
+    { k: "P", x: 902 }, { k: "H", x: 1134 },
+    { k: "LP", x: 1450, ini: true },
+    { k: "R", x: 1670 }, { k: "A", x: 1906 }, { k: "D", x: 2142 }, { k: "A", x: 2384 },
+  ];
+
+  const el = (tag, attrs, parent) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (parent) parent.appendChild(n);
+    return n;
+  };
+
+  let maskId = 0;
+  /* Pieza del logo (J o P) dibujada con máscara sobre su línea central. */
+  function piece(parent, which, fill) {
+    const id = "m" + maskId++;
+    const defs = el("defs", {}, parent);
+    const mask = el("mask", { id, maskUnits: "userSpaceOnUse", x: -200, y: -200, width: 800, height: 700 }, defs);
+    const line = el("use", {
+      href: "#Jline", fill: "none", stroke: "#fff", "stroke-width": 74,
+      "stroke-linecap": "round", "stroke-dasharray": "1 1",
+    }, mask);
+    if (which === "P") line.setAttribute("transform", "rotate(180 200.17 137.05)");
+    const g = el("g", { mask: `url(#${id})` }, parent);
+    const shape = el("use", { href: "#" + which, fill }, g);
+    return { line, shape };
+  }
+
+  function build(world, opts) {
+    world.replaceChildren();
+    const parts = [];
+    NAME.forEach((L, i) => {
+      const colorIni = RED;
+      const color = opts.allRed ? RED : (L.ini ? RED : PAPER);
+      const mover = el("g", {}, world);
+      const base = L.k === "LP" ? -216 : 0;
+      const place = (x) => `translate(${x + base}px, 0px)`;
+      mover.style.transform = place(L.x);
+      const item = { L, mover, place, strokes: [], lines: [], shapes: [] };
+
+      if (L.k === "J" || L.k === "LP") {
+        const p = piece(mover, L.k === "J" ? "J" : "P", L.ini ? colorIni : color);
+        item.lines.push(p.line); item.shapes.push(p.shape);
+      } else {
+        for (const s of GLYPHS[L.k].s) {
+          const p = el("path", {
+            d: s.d, fill: "none", stroke: color, "stroke-width": W,
+            "stroke-linecap": s.cap, "stroke-linejoin": s.join || "round",
+          }, mover);
+          item.strokes.push(p);
+        }
+      }
+      parts.push(item);
+    });
+    // Las iniciales van encima: el resto del nombre sale de detrás de ellas.
+    parts.filter((p) => p.L.ini).forEach((p) => world.appendChild(p.mover));
+    return parts;
+  }
+
+  /* ---------- Escenario ---------- */
+  const world = document.getElementById("world");
+  const cam = document.getElementById("cam");
+  let parts = [];
+  let anims = [];
+  let mode = "once";
+  let allRed = false;
+  let loopTimer = 0;
+
+  const T = 2300; // largo total; todas las animaciones lo completan con endDelay para poder invertirlas en espejo
+  const DRAW = "cubic-bezier(0.65, 0, 0.35, 1)";
+  const INOUT = "cubic-bezier(0.83, 0, 0.17, 1)";
+
+  function add(node, kf, delay, duration, easing) {
+    const endDelay = Math.max(0, T - delay - duration);
+    anims.push(node.animate(kf, { delay, duration, endDelay, easing, fill: "both" }));
+  }
+  const drawKF = [{ strokeDashoffset: 1, opacity: 0 }, { strokeDashoffset: 0.999, opacity: 1, offset: 0.02 }, { strokeDashoffset: 0, opacity: 1 }];
+
+  function timeline() {
+    anims.forEach((a) => a.cancel());
+    anims = [];
+    clearTimeout(loopTimer);
+    parts = build(world, { allRed });
+    if (reduce) return;
+
+    const J = parts[0], P = parts[6];
+    // 1 · Se escriben la J y la P a la vez
+    add(J.lines[0], drawKF, 0, 800, DRAW);
+    add(P.lines[0], drawKF, 0, 800, DRAW);
+    // 2 · Cámara y piezas a su lugar
+    add(cam, [{ transform: "scale(3.2)" }, { transform: "scale(1)" }], 1050, 900, "cubic-bezier(0.4, 0, 0.1, 1)");
+    add(J.mover, [{ transform: J.place(LOGO_X) }, { transform: J.place(J.L.x) }], 1100, 900, INOUT);
+    add(P.mover, [{ transform: P.place(LOGO_X + 216) }, { transform: P.place(P.L.x) }], 1100, 900, INOUT);
+    // 3 · El resto del nombre se despliega desde detrás de cada inicial
+    const EXPO = "cubic-bezier(0.16, 1, 0.3, 1)";
+    parts.forEach((p, i) => {
+      if (p.L.ini) return;
+      const inicial = i < 6 ? J : P;
+      const j = i < 6 ? i - 1 : i - 7;
+      add(p.mover, [
+        { transform: p.place(inicial.L.x + 30), opacity: 0, filter: "blur(14px)" },
+        { transform: p.place(p.L.x), opacity: 1, filter: "blur(0px)" },
+      ], 1550 + j * 30, 600, EXPO);
+    });
+
+    if (mode === "loop") scheduleLoop(1);
+  }
+
+  function scheduleLoop(dir) {
+    const done = Promise.all(anims.map((a) => a.finished.catch(() => {})));
+    done.then(() => {
+      loopTimer = setTimeout(() => {
+        if (mode !== "loop") return;
+        anims.forEach((a) => { a.playbackRate = dir === 1 ? -1.35 : 1; a.play(); });
+        scheduleLoop(-dir);
+      }, dir === 1 ? 1400 : 900);
+    });
+  }
+
+  document.getElementById("replay").addEventListener("click", timeline);
+  document.querySelectorAll("[data-mode]").forEach((b) => b.addEventListener("click", () => {
+    mode = b.dataset.mode;
+    document.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    timeline();
+  }));
+  document.querySelectorAll("[data-color]").forEach((b) => b.addEventListener("click", () => {
+    allRed = b.dataset.color === "red";
+    document.querySelectorAll("[data-color]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    timeline();
+  }));
+
+  /* ---------- Lámina de construcción (estática) ---------- */
+  const sheet = document.getElementById("sheet");
+  el("rect", { x: -60, y: 0, width: 2692, height: 274, fill: "none", stroke: PAPER, "stroke-opacity": 0.12, "stroke-dasharray": "6 8", "stroke-width": 2 }, sheet);
+  const sw = el("g", { "clip-path": "url(#band2)" }, sheet);
+  const d2 = el("defs", {}, sheet);
+  const cp = el("clipPath", { id: "band2" }, d2);
+  el("rect", { x: -2000, y: 0, width: 7000, height: 274 }, cp);
+  NAME.forEach((L) => {
+    const base = L.k === "LP" ? -216 : 0;
+    const g = el("g", { transform: `translate(${L.x + base} 0)` }, sw);
+    const logoPiece = L.k === "J" || L.k === "LP";
+    if (logoPiece) el("use", { href: L.k === "J" ? "#J" : "#P", fill: RED }, g);
+    if (!logoPiece) for (const s of GLYPHS[L.k].s) {
+      el("path", { d: s.d, fill: "none", stroke: PAPER, "stroke-width": W, "stroke-linecap": s.cap, "stroke-linejoin": s.join || "round" }, g);
+      el("path", { d: s.d, fill: "none", stroke: RED, "stroke-width": 3, "stroke-dasharray": "10 8" }, g);
+    }
+  });
+  const lab = (x, y, txt, anchor = "start") => {
+    const t = el("text", { x, y, fill: PAPER, "fill-opacity": 0.55, "font-family": "Geist Mono, monospace", "font-size": 30, "letter-spacing": 4, "text-anchor": anchor }, sheet);
+    t.textContent = txt;
+  };
+  lab(0, -36, "PIEZA J DEL LOGO");
+  lab(1450 - 20, -36, "PIEZA P DEL LOGO");
+  lab(2572, 340, "ALTO 274 · TRAZO 51", "end");
+  lab(0, 340, "LÍNEA ROJA: EL CAMINO QUE DIBUJA LA ANIMACIÓN");
+
+  timeline();
+})();
+</script>

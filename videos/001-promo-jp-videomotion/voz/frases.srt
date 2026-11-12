@@ -1,0 +1,36 @@
+1
+00:00:00,000 --> 00:00:05,880
+ Tienes una idea, pero no tienes un estudio, ni un editor, ni semanas.
+
+2
+00:00:05,880 --> 00:00:11,720
+ Ahora sí, JP Video Motion, tu agente de IA, convertido en estudio de video.
+
+3
+00:00:11,720 --> 00:00:19,820
+ Le dices nuevo video y arranca la misma idea en tarjetas, en collage, como un documental,
+
+4
+00:00:19,820 --> 00:00:28,640
+ en cómic, en capas, con profundidad, con personajes, o solo con letra y voz.
+
+5
+00:00:28,640 --> 00:00:31,640
+ Guión, voz, diseño, animación, render.
+
+6
+00:00:31,640 --> 00:00:36,300
+ Tú apruebas cada paso, del mismo proyecto, horizontal y vertical.
+
+7
+00:00:36,300 --> 00:00:40,360
+ Todo dibujado en código, el mismo resultado, cuadro a cuadro.
+
+8
+00:00:40,360 --> 00:00:42,800
+ Una idea, todos los estilos.
+
+9
+00:00:42,800 --> 00:00:46,080
+ JP Video Motion, código abierto en GitHub.
+

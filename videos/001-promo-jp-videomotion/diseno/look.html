@@ -1,0 +1,88 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>001 · guía de look</title>
+<!-- Hoja de look renderizable: node nucleo/render.mjs --film videos/001-promo-jp-videomotion/diseno --page look --stills 0 -->
+<style>html,body{margin:0;background:#111}canvas{display:block;max-height:100vh;margin:auto}</style>
+<canvas id="c"></canvas>
+<script src="../../../nucleo/lib/motion.js"></script>
+<script src="../../../nucleo/kit/fuentes.js"></script>
+<script src="../../../nucleo/kit/acabado.js"></script>
+<script src="../../../nucleo/kit/armazon.js"></script>
+<script src="../js/firma-datos.js"></script>
+<script src="../js/marca.js"></script>
+<script>
+  const { C, F, punto, rotulo, firma } = MARCA;
+  const P = ARMAZON.crear({ dur: 1, fondo: MARCA.fondo, fuentes: MARCA.caras, cargar: [MARCA.listo], acabado: ESTILO.acabado() });
+  const g = P.g;
+  const panel = (x, y, w, h) => { g.fillStyle = C.banda; g.fillRect(x, y, w, h); g.strokeStyle = C.linea; g.lineWidth = 1.5; g.strokeRect(x + 0.75, y + 0.75, w - 1.5, h - 1.5); };
+  const texto = (s, x, y, font, color = C.papel, alinear = "left") => { g.font = font; g.fillStyle = color; g.textAlign = alinear; g.textBaseline = "alphabetic"; g.letterSpacing = "0px"; g.fillText(s, x, y); };
+
+  // Las seis pieles: fondo del estilo y qué es el punto rojo en cada una
+  const PIELES = [
+    ["TARJETAS", "insignia", (x, y, w, h) => { const gr = g.createLinearGradient(0, y, 0, y + h); gr.addColorStop(0, "#5C9BF0"); gr.addColorStop(1, "#1D55C4"); g.fillStyle = gr; g.fillRect(x, y, w, h);
+      g.fillStyle = "#FFFFFF"; g.beginPath(); g.roundRect(x + 40, y + 34, w - 80, h - 68, 18); g.fill(); punto(g, x + w - 70, y + 64, 16, { brillo: 0 }); }],
+    ["VOX", "marcador", (x, y, w, h) => { g.fillStyle = "rgb(233,221,194)"; g.fillRect(x, y, w, h);
+      g.strokeStyle = "rgba(90,70,50,0.35)"; g.lineWidth = 1; for (let i = 1; i < 6; i++) { g.beginPath(); g.moveTo(x + i * w / 6, y); g.lineTo(x + i * w / 6, y + h); g.stroke(); g.beginPath(); g.moveTo(x, y + i * h / 6); g.lineTo(x + w, y + i * h / 6); g.stroke(); }
+      punto(g, x + w * 0.55, y + h * 0.5, 14, { brillo: 0 }); g.strokeStyle = C.rojo; g.lineWidth = 4; g.beginPath(); g.ellipse(x + w * 0.55, y + h * 0.5, 36, 30, -0.2, 0.3, Math.PI * 2.1); g.stroke(); }],
+    ["CÓMIC", "pelota", (x, y, w, h) => { g.fillStyle = "#1B2346"; g.fillRect(x, y, w, h); g.fillStyle = "#FFD23F"; g.fillRect(x + 20, y + 20, w - 40, h - 40);
+      g.fillStyle = "rgba(0,0,0,0.12)"; for (let i = 0; i < 18; i++) for (let j = 0; j < 9; j++) { g.beginPath(); g.arc(x + 30 + i * 16, y + 30 + j * 14, 3, 0, 7); g.fill(); }
+      g.strokeStyle = "#111"; g.lineWidth = 6; g.strokeRect(x + 20, y + 20, w - 40, h - 40); punto(g, x + w * 0.5, y + h * 0.52, 26, { brillo: 0 }); g.lineWidth = 5; g.beginPath(); g.arc(x + w * 0.5, y + h * 0.52, 26, 0, 7); g.stroke(); }],
+    ["CAPAS", "sol", (x, y, w, h) => { const gr = g.createLinearGradient(0, y, 0, y + h); gr.addColorStop(0, "#26286A"); gr.addColorStop(0.75, "#F4A57C"); g.fillStyle = gr; g.fillRect(x, y, w, h);
+      punto(g, x + w * 0.5, y + h * 0.6, 26, { brillo: 1.4 }); g.fillStyle = "#363A7A"; g.beginPath(); g.moveTo(x, y + h); g.lineTo(x, y + h * 0.7); g.lineTo(x + w * 0.3, y + h * 0.55); g.lineTo(x + w * 0.62, y + h * 0.78); g.lineTo(x + w, y + h * 0.6); g.lineTo(x + w, y + h); g.fill();
+      g.fillStyle = "#2F5E58"; g.beginPath(); g.moveTo(x, y + h); g.lineTo(x, y + h * 0.86); g.quadraticCurveTo(x + w * 0.5, y + h * 0.7, x + w, y + h * 0.9); g.lineTo(x + w, y + h); g.fill(); }],
+    ["PLANO", "globo", (x, y, w, h) => { g.fillStyle = "#2E2160"; g.fillRect(x, y, w, h); g.fillStyle = "#3D2E7C"; g.fillRect(x, y + h * 0.78, w, h * 0.22);
+      g.strokeStyle = C.papel; g.lineWidth = 2; g.beginPath(); g.moveTo(x + w * 0.46, y + h * 0.42); g.quadraticCurveTo(x + w * 0.5, y + h * 0.6, x + w * 0.47, y + h * 0.74); g.stroke();
+      punto(g, x + w * 0.46, y + h * 0.32, 22, { brillo: 0.6 }); g.fillStyle = "#3E8E86"; g.fillRect(x + w * 0.44, y + h * 0.7, 26, 40); g.fillStyle = "#C68A62"; g.beginPath(); g.arc(x + w * 0.44 + 13, y + h * 0.66, 13, 0, 7); g.fill(); }],
+    ["TIPOGRÁFICO", "punto final", (x, y, w, h) => { g.fillStyle = C.ink; g.fillRect(x, y, w, h); texto("IDEA", x + w * 0.42, y + h * 0.68, F.display(78), C.papel, "center");
+      g.font = F.display(78); punto(g, x + w * 0.42 + g.measureText("IDEA").width / 2 + 16, y + h * 0.68 - 8, 10, { brillo: 0.4 }); }],
+  ];
+
+  P.planos([[0, 1, () => P.dis(() => {
+    const W = 1080, m = 60;
+    rotulo(g, "001 · JP-videomotion · guía de look", m, 80, { px: 22, linea: 1 });
+
+    // 1 · Firma en movimiento: cuatro instantes
+    const F4 = [[0.35, "logo", "0,35 s · se escribe"], [0.8, "logo", "0,80 s · logo"], [1.7, "completa", "1,70 s · se despliega"], [2.3, "completa", "2,30 s · firma"]];
+    F4.forEach(([t, modo, nombre], i) => {
+      const x = m + (i % 2) * 490, y = 140 + Math.floor(i / 2) * 230, w = 470, h = 210;
+      panel(x, y, w, h);
+      g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip();
+      firma(g, t, { cx: x + w / 2, cy: y + h / 2 - 8, alto: 130, ancho: 400, modo });
+      g.restore();
+      rotulo(g, nombre, x + 16, y + h - 20, { px: 15, color: C.tenue });
+    });
+
+    // 2 · Rótulo de marca y llamada
+    texto("JP-VIDEOMOTION", W / 2, 760, F.display(132), C.papel, "center");
+    g.font = F.display(132); const wt = g.measureText("JP-VIDEOMOTION").width;
+    punto(g, W / 2 + wt / 2 + 26, 742, 15);
+    texto("Una idea. Todos los estilos.", W / 2, 830, F.texto(46, 500), C.suave, "center");
+
+    // 3 · Tipografías
+    panel(m, 890, W - 2 * m, 330);
+    texto("TIENES UNA IDEA.", m + 30, 1000, F.display(96));
+    texto("Tu agente de IA, convertido en estudio de video.", m + 30, 1060, F.texto(34, 500), C.suave);
+    rotulo(g, "/jp-nuevo-video", m + 30, 1110, { px: 26, color: C.papel });
+    texto("Joseph Prada", W - m - 40, 1190, F.firma(84), C.rojo, "right");
+    rotulo(g, "Anton · Geist · Geist Mono · Mrs Saint Delafield", m + 30, 1190, { px: 14, color: C.tenue });
+
+    // 4 · Paleta
+    const PAL = [[C.ink, "ink #0b0b0c"], [C.banda, "banda #121214"], [C.papel, "papel #f2efe9"], [C.rojo, "rojo #e63329"], [C.rojoApagado, "rojo apagado"], [C.tenue, "texto tenue"]];
+    PAL.forEach(([col, nombre], i) => {
+      const x = m + i * 162, y = 1260;
+      g.fillStyle = col; g.fillRect(x, y, 146, 90); g.strokeStyle = C.linea; g.strokeRect(x + 0.5, y + 0.5, 145, 89);
+      texto(nombre, x, y + 120, F.mono(14), C.tenue);
+    });
+
+    // 5 · El punto rojo en las seis pieles
+    rotulo(g, "La misma idea en seis pieles", m, 1430, { px: 20 });
+    PIELES.forEach(([nombre, rol, pinta], i) => {
+      const x = m + (i % 3) * 330, y = 1470 + Math.floor(i / 3) * 186, w = 300, h = 140;
+      g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip(); pinta(x, y, w, h); g.restore();
+      rotulo(g, `${nombre} · ${rol}`, x, y + h + 18, { px: 13, color: C.suave }); g.strokeStyle = C.linea; g.lineWidth = 1.5; g.strokeRect(x + 0.75, y + 0.75, w - 1.5, h - 1.5);
+    });
+
+    // 6 · Llamada a la acción
+    texto("github.com/josephprada/JP-videomotion", W / 2, 1870, F.mono(32, 500), C.papel, "center");
+  })]]);
+</script>

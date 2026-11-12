@@ -1,0 +1,41 @@
+# Sistema de diseño JP (JP Developer · Joseph Prada).
+nombre: "JP"
+origen: manual            # claude-design | figma | manual-de-marca | manual
+fuente_original: "Repos JP-Portafolio (src/index.css) y JP-Venta (docs/brand/jp-motion.html, public/brand, src/components/marca/trazos.ts). La persona lo da como su sistema JP de Claude Design; no hubo acceso directo a Claude Design en la sesión de importación."
+importado: "2026-10-22"
+descripcion: "Oscuro por diseño: negro casi puro, papel cálido y un solo acento rojo. Formas rectas (radio 0) y líneas finas. Firma en movimiento: el logo JP se escribe y despliega el nombre."
+colores:
+  primario: "#e63329"     # acento único, rojo
+  secundario: "#a8231c"   # rojo apagado
+  acento: "#e63329"
+  fondo: "#0b0b0c"        # ink
+  texto: "#f2efe9"        # paper
+  extra:
+    acento_texto: "#f53d31"   # rojo para texto pequeño (mejor contraste)
+    banda: "#121214"
+    fondo_hundido: "#050506"
+    texto_suave: "rgba(242,239,233,0.78)"
+    texto_tenue: "rgba(242,239,233,0.52)"
+    linea: "rgba(242,239,233,0.14)"
+    linea_fuerte: "rgba(242,239,233,0.40)"
+tipografias:
+  display: { familia: "Anton", peso: 400, fontsource: "@fontsource/anton" }              # siempre en MAYÚSCULAS
+  texto: { familia: "Geist Variable", peso: 500, fontsource: "@fontsource-variable/geist" }
+  mono: { familia: "Geist Mono Variable", peso: 500, fontsource: "@fontsource-variable/geist-mono" }  # etiquetas, tracking 0.16–0.22em
+  firma: { familia: "Mrs Saint Delafield", peso: 400, fontsource: "@fontsource/mrs-saint-delafield" }  # solo tamaños grandes (>= 44 px)
+logos:
+  principal: "activos/logo-jp-rojo.svg"    # rojo #e63329, vectorizado (400 x 274)
+  monocromo: "activos/logo-jp-papel.svg"   # papel, para fondo oscuro
+  ink: "activos/logo-jp-ink.svg"           # negro, para fondo claro
+  original: "activos/logo-jp.png"
+firma_movimiento:
+  guia: "activos/guia-movimiento.html"     # 2,3 s: se escribe el logo (0–0,8) · pausa (0,8–1,05) · se abre (1,05–2,0) · se despliega JOSEPH PRADA (1,55–2,3)
+  geometria: "activos/trazos-firma.ts"     # trazos del logo y del nombre; grosor 51, alto 274
+# Los retratos, el clip de gestos y los mp4 de la firma no se publican en este repo (activos personales).
+reglas:
+  - "Un solo acento: rojo #e63329 (#f53d31 en texto pequeño). No se agregan otros colores de marca."
+  - "Oscuro siempre: fondo ink, texto paper."
+  - "Formas rectas: radio 0, líneas finas (hairline)."
+  - "Títulos en Anton MAYÚSCULAS; etiquetas en Geist Mono MAYÚSCULAS con tracking amplio."
+  - "Firma manuscrita solo en tamaños grandes (>= 44 px)."
+  - "El logo no se deforma; solo en rojo, papel o ink. La J y la P se mueven solo como en la firma en movimiento."
